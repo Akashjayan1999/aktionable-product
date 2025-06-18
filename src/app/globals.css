@@ -202,11 +202,7 @@ body {
   letter-spacing: var(--tracking-normal);
 }
 
-*{
-  box-sizing: border-box;
-  margin: 0;
-  padding: 0;
-}
+
 @layer base {
   * {
     @apply border-border outline-ring/50;
@@ -214,4 +210,46 @@ body {
   body {
     @apply bg-background text-foreground;
   }
+}
+
+
+.font-quicksand {
+  font-family: var(--font-quicksand), sans-serif;
+}
+.font-quicksand::placeholder{
+  font-family: var(--font-quicksand), sans-serif;
+}
+
+.font-varela-round {
+  font-family: var(--font-varela-round), sans-serif;
+}
+
+.font-varela-round::placeholder{
+  font-family: var(--font-varela-round), sans-serif;
+}
+
+.login-input input:-webkit-autofill {
+  box-shadow: 0 0 0px 1000px #e5f4f1 inset !important;
+  -webkit-text-fill-color: #000 !important;
+  transition: background-color 5000s ease-in-out 0s;
+}
+
+.login-input input:active{
+   box-shadow: 0 0 0px 1000px #e5f4f1 inset !important;
+}
+
+
+
+
+
+/* ----------  ---------- */
+/* login */
+/* ----------  ---------- */
+@media (max-width: 761px) and (max-height: 750px) {
+    .img-absolute {
+       top:-5rem;
+    }
+    .img-absolute-icon{
+      bottom:-8rem;
+    }
 }

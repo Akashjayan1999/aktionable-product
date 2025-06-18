@@ -35,52 +35,52 @@ export default function LoginForm() {
   return (
     <form
       onSubmit={handleSubmit(onSubmit)}
-      className="w-full max-w-sm space-y-6"
+      className="w-full max-w-lg space-y-5 login-input font-varela-round font-normal"
     >
-      <div>
-        <Label htmlFor="email">Email</Label>
+      <div className="">
+        
         <Input
           id="email"
           type="email"
           {...register("email")}
           placeholder="admin@gmail.com"
-          className="bg-[#e5f4f1]"
+          className="h-12 font-quicksand bg-[#e5f4f1] border-none text-base focus-visible:ring-[1px] focus-visible:ring-[#009588] focus-visible:outline-none"
         />
         {errors.email && (
           <p className="text-sm text-red-600">{errors.email.message}</p>
         )}
       </div>
 
-      <div>
-        <Label htmlFor="password">Password</Label>
+      <div className="">
+      
         <Input
           id="password"
           type="password"
           {...register("password")}
-          className="bg-[#e5f4f1]"
+          className=" h-12 font-quicksand bg-[#e5f4f1] border-none text-base focus-visible:ring-[1px] focus-visible:ring-[#009588] focus-visible:outline-none"
         />
         {errors.password && (
           <p className="text-sm text-red-600">{errors.password.message}</p>
         )}
       </div>
 
-      <div className="flex justify-between items-center text-sm">
-        <div className="flex items-center space-x-2">
-          <Checkbox id="remember" />
+      <div className="flex justify-between items-center text-sm -mt-2">
+        <div className="flex text-base items-center space-x-1">
+          <Checkbox id="remember" className="shadow-none border border-[#004487]" />
           <Label htmlFor="remember">Remember me</Label>
         </div>
-        <a href="#" className="text-teal-700 hover:underline">
+        <a href="#" className="text-[#009588] text-sm hover:underline">
           Forgot Password ?
         </a>
       </div>
 
-      <Button type="submit" className="w-full bg-blue-900 text-white">
+      <Button type="submit" className="w-full py-4 font-quicksand font-medium text-base bg-[#004487] text-white">
         Login
       </Button>
 
-      <p className="text-sm text-center">
+      <p className="text-sm text-start -mt-2">
         New to Aktionable AI?{" "}
-        <a href="#" className="text-blue-700 hover:underline">
+        <a href="#" className="text-[#004487] hover:underline">
           Register Now
         </a>
       </p>
