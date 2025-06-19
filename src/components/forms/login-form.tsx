@@ -4,6 +4,7 @@ import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { loginSchema } from "@/lib/zod-schema";
 import { z } from "zod";
+import { useRouter } from 'next/navigation'
 import {
   Input
 } from "@/components/ui/input";
@@ -17,9 +18,11 @@ import {
   Checkbox
 } from "@/components/ui/checkbox";
 
+
 type FormData = z.infer<typeof loginSchema>;
 
 export default function LoginForm() {
+  const router = useRouter();
   const {
     register,
     handleSubmit,
@@ -30,6 +33,7 @@ export default function LoginForm() {
 
   const onSubmit = (data: FormData) => {
     console.log(data);
+    router.push("/home");
   };
 
   return (
@@ -44,6 +48,7 @@ export default function LoginForm() {
           type="email"
           {...register("email")}
           placeholder="admin@gmail.com"
+          autoComplete="off"
           className="h-12 font-quicksand bg-[#e5f4f1] border-none text-base focus-visible:ring-[1px] focus-visible:ring-[#009588] focus-visible:outline-none"
         />
         {errors.email && (
@@ -57,6 +62,8 @@ export default function LoginForm() {
           id="password"
           type="password"
           {...register("password")}
+          autoComplete="new-password"
+          placeholder="********"
           className=" h-12 font-quicksand bg-[#e5f4f1] border-none text-base focus-visible:ring-[1px] focus-visible:ring-[#009588] focus-visible:outline-none"
         />
         {errors.password && (
