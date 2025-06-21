@@ -52,8 +52,8 @@ export function SlideCard({
         </a>
       </CardFooter>
       <div className="absolute -bottom-1 -right-1 w-[80px] h-[80px] bg-white rounded-tl-[50px] rounded-br-[20px] border-0
-      before:content-[''] before:absolute before:w-[20px] before:h-[20px] before:bg-transparent before:rounded-br-[30px] before:top-[-20px] before:right-0 before:shadow-[5px_5px_5px_0px_#f3f4f6]
-      after:content-[''] after:absolute after:w-[20px] after:h-[20px] after:bg-transparent after:rounded-br-[30px] after:bottom-0 after:left-[-20px] after:shadow-[5px_5px_5px_0px_#f3f4f6]">
+      before:content-[''] before:absolute before:w-[20px] before:h-[20px] before:bg-transparent before:rounded-br-[30px] before:top-[-20px] before:right-0 before:shadow-[5px_5px_5px_0px_#fff]
+      after:content-[''] after:absolute after:w-[20px] after:h-[20px] after:bg-transparent after:rounded-br-[30px] after:bottom-0 after:left-[-20px] after:shadow-[5px_5px_5px_0px_#fff]">
 
       </div>
     </Card>
