@@ -24,10 +24,7 @@ export const CompletedProjectSection = ({
   notes,
   completedProjects
 }: CompletedProjectSection) => {
-  const [isCompletedTab, setIsCompletedTab] = useState(false);
-  const handleTabChange = (tab: "inProgress" | "completed") => {
-    setIsCompletedTab(tab === "completed");
-  };
+  
   const projects = completedProjects;
   return (
     <div className="py-12 px-0 relative mt-25 mx-5 md:mx-[48px]    h-min-2">

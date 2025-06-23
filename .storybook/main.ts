@@ -17,7 +17,21 @@ const config: StorybookConfig = {
     "options": {}
   },
   "staticDirs": [
-    "..\\public"
-  ]
+    "../public"
+  ],
+  "viteFinal": async (config) => {
+    // Ensure CSS is processed correctly
+    config.css = {
+      postcss: {
+        plugins: [
+          require('tailwindcss'),
+          require('autoprefixer')
+        ]
+      }
+    };
+    
+    return config;
+  }
 };
+
 export default config;

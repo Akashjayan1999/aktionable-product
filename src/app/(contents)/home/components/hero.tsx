@@ -22,8 +22,8 @@ export default function Hero() {
             solutions quickly and confidently
           </p>
           <Button
-            variant="tealOutlineHoverFill"
-            className="mt-8 rounded-3xl border-2 px-10 py-5 font-quicksand text-sm font-medium"
+            variant="tealRoundedOutline"
+            // className="mt-8 rounded-3xl border-2 px-10 py-5 font-quicksand text-sm font-medium"
           >
             Our Service
           </Button>

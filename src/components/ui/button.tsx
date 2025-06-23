@@ -20,10 +20,19 @@ const buttonVariants = cva(
         ghost:
           "hover:bg-accent hover:text-accent-foreground dark:hover:bg-accent/50",
         link: "text-primary underline-offset-4 hover:underline",
-        tealOutlineHoverFill: ` border border-white text-white bg-transparent
+        tealOutlineHoverFill: `border border-white text-white bg-transparent
                                  hover:bg-[#009588] hover:text-white
                                  transition-colors duration-300 ease-in-out
   `,
+        blueSolid: `
+      w-full py-4 font-quicksand font-medium text-base
+      bg-[#004487] text-white
+      hover:bg-[#00376e]
+      transition-colors duration-300 ease-in-out
+    `,
+        tealRoundedOutline: `mt-8 rounded-3xl border-2 !px-10 !py-5 font-quicksand text-sm font-medium border-white text-white bg-transparent hover:bg-[#009588] hover:text-white transition-colors duration-300 ease-in-out`,
+        primary: `bg-[#004487]  text-primary-foreground shadow-xs hover:bg-primary/90 rounded-3xl text-xl 
+        !py-6 transition-colors duration-300 ease-in-out`,
       },
       size: {
         default: "h-9 px-4 py-2 has-[>svg]:px-3",

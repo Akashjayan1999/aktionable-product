@@ -64,7 +64,7 @@ export default function LoginForm() {
           {...register("password")}
           autoComplete="new-password"
           placeholder="********"
-          className=" h-12 font-quicksand bg-[#e5f4f1] border-none text-base focus-visible:ring-[1px] focus-visible:ring-[#009588] focus-visible:outline-none"
+          className="h-12 font-quicksand bg-[#e5f4f1] border-none text-base focus-visible:ring-[1px] focus-visible:ring-[#009588] focus-visible:outline-none"
         />
         {errors.password && (
           <p className="text-sm text-red-600">{errors.password.message}</p>
@@ -81,7 +81,7 @@ export default function LoginForm() {
         </a>
       </div>
 
-      <Button type="submit" className="w-full py-4 font-quicksand font-medium text-base bg-[#004487] text-white">
+      <Button type="submit" variant="blueSolid">
         Login
       </Button>
 

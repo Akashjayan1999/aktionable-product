@@ -60,7 +60,7 @@ export const ModuleSection = ({
       <div className="mt-10 flex flex-col lg:flex-row gap-3 text-xl font-varela-round font-normal lg:items-center">
         <div>
           <Link href={buttonLink}>
-            <Button className="rounded-3xl text-xl py-6">{buttonText}</Button>
+            <Button variant="primary">{buttonText}</Button>
           </Link>
         </div>
         <div className="flex-1 lg:mx-6 w-full">{summary}</div>
