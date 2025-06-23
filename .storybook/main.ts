@@ -10,12 +10,11 @@ const config: StorybookConfig = {
     "@storybook/addon-docs",
     "@storybook/addon-onboarding",
     "@storybook/addon-a11y",
-    "@storybook/addon-vitest"
+    "@storybook/addon-vitest",
+    "@storybook/addon-next",
+    "@storybook/addon-next-router",
   ],
-  "framework": {
-    "name": "@storybook/nextjs-vite",
-    "options": {}
-  },
+   framework: '@storybook/nextjs', 
   "staticDirs": [
     "../public"
   ],

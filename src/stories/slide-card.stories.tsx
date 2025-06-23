@@ -2,7 +2,7 @@ import type { Meta, StoryObj } from '@storybook/react';
 import { SlideCard } from '@/app/(contents)/home/components/slider-card';
 
 const meta: Meta<typeof SlideCard> = {
-  title: 'Components/SlideCard',
+  title: 'Components/ui/SlideCard',
   component: SlideCard,
   tags: ['autodocs'],
   args: {

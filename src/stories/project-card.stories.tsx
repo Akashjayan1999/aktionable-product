@@ -2,7 +2,7 @@ import type { Meta, StoryObj } from "@storybook/react";
 import { ProjectCard } from "@/components/project-card";
 
 const meta: Meta<typeof ProjectCard> = {
-  title: "Components/ProjectCard",
+  title: "Components/ui/ProjectCard",
   component: ProjectCard,
   tags: ["autodocs"],
   args: {
