@@ -1,0 +1,42 @@
+"use client";
+
+import React from 'react';
+import { Button } from '@/components/ui/button';
+import { ArrowLeft } from 'lucide-react';
+import { ModeToggle } from '@/components/mode-toggle';
+import Link from 'next/link';
+import Image from 'next/image';
+interface ChatHeaderProps {
+  title: string;
+}
+
+const ChatHeader: React.FC<ChatHeaderProps> = ({ title }) => {
+  return (
+    <div className="flex items-center justify-between p-4  bg-background">
+      <h1 className="text-lg font-semibold"></h1>
+      <div className="flex items-center gap-2">
+        <ModeToggle />
+       
+          <Link href="/" className="flex items-center gap-2">
+            <Button
+                        variant="link"
+                        className="text-white hover:no-underline cursor-pointer bg-[#009588] rounded-3xl px-4 font-normal font-varela-round"
+                      >
+                        <Image
+                          src="/arrow2.svg"
+                          alt="arrow"
+                          width={25}
+                          height={20}
+                          className="animate-pulse"
+                        />{" "}
+                        Back to website
+                      </Button>
+              
+          </Link>
+        
+      </div>
+    </div>
+  );
+};
+
+export default ChatHeader; 

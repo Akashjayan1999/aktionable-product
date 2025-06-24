@@ -240,6 +240,18 @@ body {
 
 
 
+textarea:-webkit-autofill {
+  box-shadow: 0 0 0px 1000px #e5f4f1 inset !important;
+  -webkit-text-fill-color: #000 !important;
+  transition: background-color 5000s ease-in-out 0s;
+}
+
+
+textarea:active {
+  box-shadow: 0 0 0px 1000px #e5f4f1 inset !important;
+}
+
+
 
 
 /* ----------  ---------- */
@@ -262,4 +274,11 @@ body {
 .scrollbar-hide {
   -ms-overflow-style: none;  
   scrollbar-width: none;     
+}
+
+
+@media (max-height: 800px) {
+  .sidebar-item{
+     height:93vh
+  }
 }
