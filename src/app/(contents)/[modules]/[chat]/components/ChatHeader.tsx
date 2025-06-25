@@ -6,14 +6,16 @@ import { ArrowLeft } from 'lucide-react';
 import { ModeToggle } from '@/components/mode-toggle';
 import Link from 'next/link';
 import Image from 'next/image';
+import { PanelRightOpen } from 'lucide-react';
 interface ChatHeaderProps {
   title: string;
+  toogleSidebar?: () => void;
 }
 
-const ChatHeader: React.FC<ChatHeaderProps> = ({ title }) => {
+const ChatHeader: React.FC<ChatHeaderProps> = ({ title,toogleSidebar }) => {
   return (
     <div className="flex items-center justify-between p-4  bg-background">
-      <h1 className="text-lg font-semibold"></h1>
+      <h1 className="text-xl font-semibold pt-2 visible md:invisible"><PanelRightOpen size={30} color='#a9bcd3' onClick={toogleSidebar} /></h1>
       <div className="flex items-center gap-2">
         <ModeToggle />
        

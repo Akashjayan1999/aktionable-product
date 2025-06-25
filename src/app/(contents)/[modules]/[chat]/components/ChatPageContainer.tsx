@@ -5,6 +5,7 @@ import Sidebar from "./Sidebar";
 import ChatArea from "./ChatArea";
 import AILawyerConfigForm from "./AILawyerConfigForm";
 import ChatHeader from "./ChatHeader";
+import { useToggle } from "@/app/hooks/use-toogle";
 
 interface ChatPageContainerProps {
   chatConfig: {
@@ -15,36 +16,33 @@ interface ChatPageContainerProps {
 
 const ChatPageContainer: React.FC<ChatPageContainerProps> = ({ chatConfig }) => {
   const [isConfigured, setIsConfigured] = useState(false);
-  const [isSidebarOpen, setIsSidebarOpen] = useState(false);
-
+  
+  const [isSidebarOpen, toggleSidebar] = useToggle(false);
   const isAILawyer = chatConfig.type === 'ai-lawyer';
 
   const handleConfigSubmit = () => {
     setIsConfigured(true);
   };
 
-  const closeSidebar = () => {
-    setIsSidebarOpen(false);
+  const toogleSidebar = () => {
+    toggleSidebar();
   };
 
+  
+
   return (
-    <div className="flex h-full bg-background text-foreground mt-25 mx-5 md:mx-[48px] relative">
+    <div className="dark:text-white flex h-full bg-background text-foreground mt-25 mx-5 md:mx-[48px] relative">
       {/* Overlay for mobile when sidebar is open */}
-      {isSidebarOpen && (
-        <div
-          className="fixed inset-0 bg-background/80 backdrop-blur-sm z-40 md:hidden"
-          onClick={closeSidebar}
-        />
-      )}
+      
       
       <Sidebar 
         chatType={chatConfig.type} 
         isOpen={isSidebarOpen}
-        onClose={closeSidebar}
+        onClose={toogleSidebar}
       />
       
       <div className="flex-1 flex flex-col min-w-0  ">
-        <ChatHeader title={chatConfig.displayName} />
+        <ChatHeader title={chatConfig.displayName} toogleSidebar={toogleSidebar}/>
         <main className="flex-1 flex flex-col">
           {isAILawyer && !isConfigured ? (
             <AILawyerConfigForm onConfigSubmit={handleConfigSubmit} />

@@ -39,13 +39,13 @@ const Sidebar = ({ chatType, isOpen = true, onClose }: SidebarProps) => {
   return (
     <aside
       className={cn(
-        'absolute inset-y-0 w-[300px] bg-background transform transition-transform duration-300 ease-in-out md:relative md:translate-x-0',
-        isOpen ? 'translate-x-0' : '-translate-x-full'
+        'absolute z-5 inset-y-0 w-full md:w-[300px]  bg-background transform transition-transform duration-300 ease-in-out md:relative md:translate-x-0',
+        isOpen ? 'translate-x-0' : '-translate-x-[100vw]'
       )}
     >
       <div className="flex flex-col h-[90vh] sidebar-item">
         <div className="flex items-center justify-between">
-          <h2 className="text-3xl font-norml font-varela-round pt-[23px] mx-auto bg-gradient-to-r from-[#009588] to-[#004487] bg-clip-text text-transparent flex items-end">
+          <h2 className="text-2xl md:text-3xl font-norml font-varela-round pt-[23px] mx-auto dark:bg-gradient-to-r dark:from-[#fff] dark:to-[#fff] bg-gradient-to-r from-[#009588] to-[#004487] bg-clip-text text-transparent flex items-end">
             Your Chatbot Here !
           </h2>
           <Button
@@ -58,7 +58,7 @@ const Sidebar = ({ chatType, isOpen = true, onClose }: SidebarProps) => {
           </Button>
         </div>
         <div className="flex flex-col h-full mt-6 mb-1 bg-[#CDDAEA33] rounded-2xl p-5">
-          <Button className="mb-4 text-base py-5 font-norml font-varela-round bg-gradient-to-r from-[#009588] to-[#004487]">
+          <Button className="mb-4 text-base py-5 font-norml font-varela-round dark:bg-gradient-to-r dark:from-[#fff] dark:to-[#fff] bg-gradient-to-r from-[#009588] to-[#004487] dark:text-black">
             {buttonText}
           </Button>
           <div className="flex-grow space-y-1 overflow-y-auto">
@@ -71,7 +71,7 @@ const Sidebar = ({ chatType, isOpen = true, onClose }: SidebarProps) => {
               </div>
             ))}
           </div>
-          <Button variant="blueSolid">Export Chat</Button>
+          <Button variant="blueSolid" className='dark:bg-gradient-to-r dark:from-[#fff] dark:to-[#fff] dark:text-black'>Export Chat</Button>
         </div>
       </div>
     </aside>

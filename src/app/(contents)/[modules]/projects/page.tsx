@@ -50,6 +50,7 @@ interface Props {
 
 export default async function ProjectPage({ params,searchParams  }: Props) {
   const { modules } = await params;
+  const searchParam = await searchParams;
   console.log("Module:", modules);
   const data = projectModules[modules as keyof typeof projectModules];
 
@@ -65,7 +66,7 @@ export default async function ProjectPage({ params,searchParams  }: Props) {
       description={data.description}
       inProgressProjects={inProgressProjects}
       completedProjects={completedProjects}
-      searchParams={searchParams}
+      searchParams={searchParam}
     />
   );
 }

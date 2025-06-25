@@ -1,40 +1,35 @@
-"use client"
-
-import * as React from "react"
-import { Moon, Sun } from "lucide-react"
-import { useTheme } from "next-themes"
-
-import { Button } from "@/components/ui/button"
-import {
-  DropdownMenu,
-  DropdownMenuContent,
-  DropdownMenuItem,
-  DropdownMenuTrigger,
-} from "@/components/ui/dropdown-menu"
-
+"use client";
+import * as React from "react";
+import { Switch } from "@/components/ui/switch";
+import { cn } from "@/lib/utils";
+import { useTheme } from "next-themes";
+import { useResetThemeOnNavigate } from "@/app/hooks/use-reset-theme";
 export function ModeToggle() {
-  const { setTheme } = useTheme()
+  const { theme, setTheme } = useTheme();
+  const isDark = theme === "dark";
+
+  // Use the custom hook to handle theme reset
+  useResetThemeOnNavigate();
+  
+  const handleToggle = (checked: boolean) => {
+    setTheme(checked ? "dark" : "light");
+  };
 
   return (
-    <DropdownMenu>
-      <DropdownMenuTrigger asChild>
-        <Button variant="ghost" size="icon">
-          <Sun className="h-[1.2rem] w-[1.2rem] rotate-0 scale-100 transition-all dark:-rotate-90 dark:scale-0" />
-          <Moon className="absolute h-[1.2rem] w-[1.2rem] rotate-90 scale-0 transition-all dark:rotate-0 dark:scale-100" />
-          <span className="sr-only">Toggle theme</span>
-        </Button>
-      </DropdownMenuTrigger>
-      <DropdownMenuContent align="end">
-        <DropdownMenuItem onClick={() => setTheme("light")}>
-          Light
-        </DropdownMenuItem>
-        <DropdownMenuItem onClick={() => setTheme("dark")}>
-          Dark
-        </DropdownMenuItem>
-        <DropdownMenuItem onClick={() => setTheme("system")}>
-          System
-        </DropdownMenuItem>
-      </DropdownMenuContent>
-    </DropdownMenu>
-  )
-} 
+    <Switch
+      checked={isDark}
+      onCheckedChange={handleToggle}
+      className={cn(
+        "data-[state=unchecked]:bg-gradient-to-r data-[state=unchecked]:from-[#009588] data-[state=unchecked]:to-[#004487]",
+        "data-[state=checked]:bg-gray-300",
+        "h-[28px] w-[55px] rounded-full border-2 border-transparent transition-colors duration-200 ease-in-out focus:outline-none"
+      )}
+      classNameThumb={cn(
+        "bg-white shadow-md size-[23px] rounded-full",
+        "data-[state=checked]:translate-x-[28px]",
+        "data-[state=unchecked]:translate-x-[2px]",
+        "transition duration-300 ease-in-out"
+      )}
+    />
+  );
+}

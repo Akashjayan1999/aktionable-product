@@ -11,7 +11,7 @@ const ChatInput = () => {
       <div className="relative">
         <Textarea
           placeholder="Enter your query"
-          className="min-h-[60px] pr-12 resize-none bg-white font-normal font-varela-round text-lg text-gray-800 placeholder:text-gray-400 focus:ring-2 focus:ring-[#009588] active:border-amber-50 focus:border-transparent rounded-lg shadow-none"
+          className="h-[60px] pr-12 resize-none dark:bg-white dark:text-black bg-white font-normal font-varela-round text-lg text-gray-800 placeholder:text-gray-400 focus:ring-2 focus:ring-[#009588] active:border-amber-50 focus:border-transparent rounded-lg shadow-none"
         />
         <Button
           type="submit"
