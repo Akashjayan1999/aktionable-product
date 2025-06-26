@@ -1,5 +1,6 @@
 import { notFound } from "next/navigation";
 import ChatPageContainer from "./components/ChatPageContainer";
+import { ChatProvider } from "./context/ChatContext";
 
 const chatModules: Record<string, { type: string; displayName: string }> = {
   "ai-lawyer": {
@@ -19,6 +20,8 @@ export default async function Page({ params }: { params: Promise<{ modules: stri
     return notFound();
   }
   return (
-    <ChatPageContainer chatConfig={chatConfig} />
+    <ChatProvider>
+      <ChatPageContainer chatConfig={chatConfig} />
+    </ChatProvider>
   );
 } 

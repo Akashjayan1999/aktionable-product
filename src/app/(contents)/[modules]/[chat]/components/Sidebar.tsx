@@ -1,6 +1,9 @@
-import React from 'react';
+'use client';
+
 import { Button } from '@/components/ui/button';
 import { cn } from '@/lib/utils';
+import Link from 'next/link';
+import { useChat } from '../context/ChatContext';
 
 interface SidebarProps {
   chatType: string;
@@ -10,24 +13,24 @@ interface SidebarProps {
 
 const chatConfig: Record<
   string,
-  { buttonText: string; conversations: string[] }
+  { buttonText: string; conversations: { id: string; title: string }[] }
 > = {
   'ai-lawyer': {
     buttonText: 'New Lawyer',
     conversations: [
-      'Contract AI Lawyer',
-      'Contract AI Lawyer',
-      'Contract AI Lawyer',
-      'Contract AI Lawyer',
-      'Contract AI Lawyer',
+      { id: 'lawyer-1', title: 'Contract AI Lawyer' },
+      { id: 'lawyer-2', title: 'Contract AI Lawyer' },
+      { id: 'lawyer-3', title: 'Contract AI Lawyer' },
+      { id: 'lawyer-4', title: 'Contract AI Lawyer' },
+      { id: 'lawyer-5', title: 'Contract AI Lawyer' },
     ],
   },
   default: {
     buttonText: 'New Conversation',
     conversations: [
-      'Ecommerce Customer e-commerce customer',
-      'Corporate Governance AI Lawyer ',
-      'Ecommerce Governance',
+      { id: 'ecom-1', title: 'Ecommerce Customer e-commerce customer' },
+      { id: 'corp-1', title: 'Corporate Governance AI Lawyer ' },
+      { id: 'ecom-2', title: 'Ecommerce Governance' },
     ],
   },
 };
@@ -35,6 +38,7 @@ const chatConfig: Record<
 const Sidebar = ({ chatType, isOpen = true, onClose }: SidebarProps) => {
   const { buttonText, conversations } =
     chatConfig[chatType] ?? chatConfig.default;
+  const { startNewChat } = useChat();
 
   return (
     <aside
@@ -58,20 +62,32 @@ const Sidebar = ({ chatType, isOpen = true, onClose }: SidebarProps) => {
           </Button>
         </div>
         <div className="flex flex-col h-full mt-6 mb-1 bg-[#CDDAEA33] rounded-2xl p-5">
-          <Button className="mb-4 text-base py-5 font-norml font-varela-round dark:bg-gradient-to-r dark:from-[#fff] dark:to-[#fff] bg-gradient-to-r from-[#009588] to-[#004487] dark:text-black">
+          <Button
+            className="mb-4 text-base py-5 font-norml font-varela-round dark:bg-gradient-to-r dark:from-[#fff] dark:to-[#fff] bg-gradient-to-r from-[#009588] to-[#004487] dark:text-black"
+            onClick={startNewChat}
+          >
             {buttonText}
           </Button>
           <div className="flex-grow space-y-1 overflow-y-auto">
-            {conversations.map((conv, index) => (
-              <div
-                key={index}
-                className="p-2 rounded-md hover:bg-muted cursor-pointer"
+            {conversations.map((conv) => (
+              <Link
+                key={conv.id}
+                href={`?id=${conv.id}`}
+                scroll={false}
+                className="block p-2 rounded-md hover:bg-muted cursor-pointer"
               >
-                <p className="text-sm font-norml font-varela-round truncate">{conv}</p>
-              </div>
+                <p className="text-sm font-norml font-varela-round truncate">
+                  {conv.title}
+                </p>
+              </Link>
             ))}
           </div>
-          <Button variant="blueSolid" className='dark:bg-gradient-to-r dark:from-[#fff] dark:to-[#fff] dark:text-black'>Export Chat</Button>
+          <Button
+            variant="blueSolid"
+            className="dark:bg-gradient-to-r dark:from-[#fff] dark:to-[#fff] dark:text-black"
+          >
+            Export Chat
+          </Button>
         </div>
       </div>
     </aside>

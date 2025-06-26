@@ -1,30 +1,11 @@
 'use client';
 
-import React, { useState } from 'react';
+import React from 'react';
 import ChatInput from './ChatInput';
-
-type Message = {
-  sender: 'user' | 'bot';
-  text: string;
-};
+import { useChat } from '../context/ChatContext';
 
 const ChatArea = () => {
-  const [messages, setMessages] = useState<Message[]>([]);
-
-  const handleSendMessage = (text: string) => {
-    if (!text.trim()) return;
-
-    const userMessage: Message = { sender: 'user', text };
-    const botMessage: Message = { sender: 'bot', text: `Bot: ${text}` };
-
-    // Add user message immediately
-    setMessages((prev) => [...prev, userMessage]);
-
-    // Add bot message after delay
-    setTimeout(() => {
-      setMessages((prev) => [...prev, botMessage]);
-    }, 500);
-  };
+  const { messages } = useChat();
 
   return (
     <div className="flex flex-col flex-1 min-h-[80vh] max-h-[80vh] m-4 bg-[#CDDAEA33] rounded-2xl overflow-hidden">
@@ -51,7 +32,7 @@ const ChatArea = () => {
         )}
       </div>
 
-      <ChatInput onSendMessage={handleSendMessage} />
+      <ChatInput />
     </div>
   );
 };

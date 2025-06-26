@@ -3,18 +3,30 @@
 import { Textarea } from '@/components/ui/textarea';
 import { Button } from '@/components/ui/button';
 import Image from 'next/image';
-import React, { useState } from 'react';
+import React, { useDeferredValue, useState } from 'react';
+import { useChat } from '../context/ChatContext';
 
-type ChatInputProps = {
-  onSendMessage: (text: string) => void;
-};
-
-const ChatInput: React.FC<ChatInputProps> = ({ onSendMessage }) => {
+const ChatInput: React.FC = () => {
   const [text, setText] = useState('');
+  const deferredText = useDeferredValue(text);
+  const { messages, setMessages } = useChat();
 
   const handleSubmit = () => {
     if (text.trim()) {
-      onSendMessage(text);
+      const userMessage = { id: Date.now().toString(), sender: 'user' as const, text:deferredText };
+      const newMessages = [...messages, userMessage];
+      setMessages(newMessages);
+
+     
+      setTimeout(() => {
+        const botMessage = {
+          id: (Date.now() + 1).toString(),
+          sender: 'ai' as const,
+          text: `Bot: ${deferredText}`,
+        };
+        setMessages([...newMessages, botMessage]);
+      }, 500);
+
       setText('');
     }
   };
@@ -34,7 +46,7 @@ const ChatInput: React.FC<ChatInputProps> = ({ onSendMessage }) => {
           onChange={(e) => setText(e.target.value)}
           onKeyDown={handleKeyDown}
           placeholder="Enter your query"
-          className="h-[60px] pr-12 resize-none bg-white text-black font-varela-round text-lg placeholder:text-gray-400 focus:ring-2 focus:ring-[#009588] rounded-lg shadow-none"
+          className="h-[60px] pr-12 resize-none bg-white text-black font-varela-round text-lg placeholder:text-gray-400 focus:ring-2 focus:ring-[#009588] rounded-lg shadow-none dark:bg-white"
         />
         <Button
           type="button"

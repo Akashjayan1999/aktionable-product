@@ -1,7 +1,6 @@
 "use client";
 
-import React from "react";
-import { useForm, Controller, Control,RegisterOptions } from "react-hook-form";
+import { useForm, Controller, Control, RegisterOptions, FieldPath } from "react-hook-form";
 import { Button } from "@/components/ui/button";
 import { Label } from "@/components/ui/label";
 import {
@@ -11,14 +10,21 @@ import {
   SelectTrigger,
   SelectValue,
 } from "@/components/ui/select";
+import { useChat } from "../context/ChatContext";
+
+interface IFormInput {
+  language: string;
+  country: string;
+  type: string;
+}
 
 interface FormSelectProps {
-  control: Control<any>;
-  name: string;
+  control: Control<IFormInput>;
+  name: keyof IFormInput;
   label: string;
   placeholder: string;
   options: { label: string; value: string }[];
-  rules?: RegisterOptions; 
+  rules?: RegisterOptions<IFormInput, FieldPath<IFormInput>>; 
 }
 
 const FormSelect: React.FC<FormSelectProps> = ({
@@ -27,7 +33,7 @@ const FormSelect: React.FC<FormSelectProps> = ({
   label,
   placeholder,
   options,
-  rules={}
+  rules = {},
 }) => {
   return (
     <div>
@@ -39,13 +45,20 @@ const FormSelect: React.FC<FormSelectProps> = ({
         control={control}
         rules={rules}
         render={({ field }) => (
-          <Select onValueChange={field.onChange} value={field.value} >
-            <SelectTrigger id={name} className="w-full data-[placeholder]:text-gray-500">
-              <SelectValue placeholder={placeholder} className=""/>
+          <Select onValueChange={field.onChange} value={field.value}>
+            <SelectTrigger
+              id={name}
+              className="w-full data-[placeholder]:text-gray-500"
+            >
+              <SelectValue placeholder={placeholder} className="" />
             </SelectTrigger>
             <SelectContent>
               {options.map((option) => (
-                <SelectItem key={option.value} value={option.value} className="font-normal font-varela-round">
+                <SelectItem
+                  key={option.value}
+                  value={option.value}
+                  className="font-normal font-varela-round"
+                >
                   {option.label}
                 </SelectItem>
               ))}
@@ -57,22 +70,24 @@ const FormSelect: React.FC<FormSelectProps> = ({
   );
 };
 
-interface AILawyerConfigFormProps {
-  onConfigSubmit: () => void; 
-}
-
-const AILawyerConfigForm: React.FC<AILawyerConfigFormProps> = ({onConfigSubmit})=> {
-  const { handleSubmit, control, formState: { isValid } } = useForm({
+const AILawyerConfigForm: React.FC = () => {
+  const { setIsConfigured } = useChat();
+  const {
+    handleSubmit,
+    control,
+    formState: { isValid },
+  } = useForm<IFormInput>({
     defaultValues: {
       language: "",
       country: "",
       type: "",
     },
+    mode: "onChange",
   });
 
-  const onSubmit = (data: any) => {
+  const onSubmit = (data: IFormInput) => {
     console.log("Submitted Config:", data);
-    onConfigSubmit(); 
+    setIsConfigured(true);
   };
 
   return (
