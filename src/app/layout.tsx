@@ -1,5 +1,5 @@
 import type { Metadata } from "next";
-import { Geist, Geist_Mono, Quicksand, Varela_Round } from "next/font/google";
+import { Geist, Geist_Mono, Quicksand, Varela_Round , DM_Sans} from "next/font/google";
 import { ThemeProvider } from "@/components/providers/theme.provider"
 import { ThemeResetProvider } from "@/components/providers/theme-reset.provider";
 import "./globals.css";
@@ -19,6 +19,12 @@ const quicksand = Quicksand({
   weight: ["300", "400", "500", "600", "700"],
   subsets: ["latin"],
   variable: "--font-quicksand",
+});
+
+const dmSans = DM_Sans({
+  weight: ["100","200","300","400", "500","600", "700", "800", "900"],
+  subsets: ["latin"],
+  variable: "--font-dm-sans",
 });
 
 const varelaRound = Varela_Round({
@@ -42,7 +48,7 @@ export default function RootLayout({
   return (
     <html lang="en" suppressHydrationWarning>
       <body
-        className={`${geistSans.variable} ${geistMono.variable}  ${quicksand.variable} ${varelaRound.variable}  antialiased`}
+        className={`${geistSans.variable} ${geistMono.variable}  ${quicksand.variable} ${varelaRound.variable} ${dmSans.variable} antialiased`}
       >
         <ThemeProvider
             attribute="class"
