@@ -18,19 +18,19 @@ const chatConfig: Record<
   'ai-lawyer': {
     buttonText: 'New Lawyer',
     conversations: [
-      { id: 'lawyer-1', title: 'Contract AI Lawyer' },
-      { id: 'lawyer-2', title: 'Contract AI Lawyer' },
-      { id: 'lawyer-3', title: 'Contract AI Lawyer' },
-      { id: 'lawyer-4', title: 'Contract AI Lawyer' },
-      { id: 'lawyer-5', title: 'Contract AI Lawyer' },
+      { id: '1', title: 'Contract AI Lawyer' },
+      { id: '2', title: 'Contract AI Lawyer' },
+      { id: '3', title: 'Contract AI Lawyer' },
+      { id: '4', title: 'Contract AI Lawyer' },
+      { id: '5', title: 'Contract AI Lawyer' },
     ],
   },
   default: {
     buttonText: 'New Conversation',
     conversations: [
-      { id: 'ecom-1', title: 'Ecommerce Customer e-commerce customer' },
-      { id: 'corp-1', title: 'Corporate Governance AI Lawyer ' },
-      { id: 'ecom-2', title: 'Ecommerce Governance' },
+      { id: '1', title: 'Ecommerce Customer e-commerce customer' },
+      { id: '2', title: 'Corporate Governance AI Lawyer ' },
+      { id: '3', title: 'Ecommerce Governance' },
     ],
   },
 };
@@ -72,7 +72,7 @@ const Sidebar = ({ chatType, isOpen = true, onClose }: SidebarProps) => {
             {conversations.map((conv) => (
               <Link
                 key={conv.id}
-                href={`?id=${conv.id}`}
+                href={`?chatid=${conv.id}`}
                 scroll={false}
                 className="block p-2 rounded-md hover:bg-muted cursor-pointer"
               >
