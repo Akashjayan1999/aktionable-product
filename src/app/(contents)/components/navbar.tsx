@@ -256,7 +256,7 @@ export function NavigationMenuComponent({
                 {item.children ? (
                   <>
                     <NavigationMenuTrigger
-                      className={`capitalize px-4 py-[23px] text-base font-medium transition-colors ${
+                      className={`capitalize px-4 py-[23px] text-base font-medium transition-colors dark:bg-white ${
                         isActive
                           ? "bg-[#004487] text-white rounded-3xl"
                           : "rounded-3xl hover:bg-[#004487] text-black hover:text-white"

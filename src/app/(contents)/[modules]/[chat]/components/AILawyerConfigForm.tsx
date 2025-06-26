@@ -1,8 +1,9 @@
 "use client";
 
 import React from "react";
-import { useForm } from "react-hook-form";
+import { useForm, Controller, Control,RegisterOptions } from "react-hook-form";
 import { Button } from "@/components/ui/button";
+import { Label } from "@/components/ui/label";
 import {
   Select,
   SelectContent,
@@ -10,36 +11,83 @@ import {
   SelectTrigger,
   SelectValue,
 } from "@/components/ui/select";
-import { Label } from "@/components/ui/label";
 
-interface AILawyerConfigFormProps {
-  onConfigSubmit: (data: any) => void;
+interface FormSelectProps {
+  control: Control<any>;
+  name: string;
+  label: string;
+  placeholder: string;
+  options: { label: string; value: string }[];
+  rules?: RegisterOptions; 
 }
 
-const AILawyerConfigForm: React.FC<AILawyerConfigFormProps> = ({
-  onConfigSubmit,
+const FormSelect: React.FC<FormSelectProps> = ({
+  control,
+  name,
+  label,
+  placeholder,
+  options,
+  rules={}
 }) => {
-  const { handleSubmit, setValue, watch } = useForm();
+  return (
+    <div>
+      <Label htmlFor={name} className="mb-2 block text-base">
+        {label}
+      </Label>
+      <Controller
+        name={name}
+        control={control}
+        rules={rules}
+        render={({ field }) => (
+          <Select onValueChange={field.onChange} value={field.value} >
+            <SelectTrigger id={name} className="w-full data-[placeholder]:text-gray-500">
+              <SelectValue placeholder={placeholder} className=""/>
+            </SelectTrigger>
+            <SelectContent>
+              {options.map((option) => (
+                <SelectItem key={option.value} value={option.value} className="font-normal font-varela-round">
+                  {option.label}
+                </SelectItem>
+              ))}
+            </SelectContent>
+          </Select>
+        )}
+      />
+    </div>
+  );
+};
 
-  const language = watch("language");
-  const country = watch("country");
-  const type = watch("type");
+interface AILawyerConfigFormProps {
+  onConfigSubmit: () => void; 
+}
+
+const AILawyerConfigForm: React.FC<AILawyerConfigFormProps> = ({onConfigSubmit})=> {
+  const { handleSubmit, control, formState: { isValid } } = useForm({
+    defaultValues: {
+      language: "",
+      country: "",
+      type: "",
+    },
+  });
 
   const onSubmit = (data: any) => {
-    onConfigSubmit(data);
+    console.log("Submitted Config:", data);
+    onConfigSubmit(); 
   };
 
   return (
     <form
-      onSubmit={handleSubmit(onSubmit)}
-      className="flex-1 flex p-4 overflow-y-auto"
-    >
-      <div className="w-full max-w-4xl space-y-6">
+    onSubmit={handleSubmit(onSubmit)}
+    className="flex-1 flex h-[80vh] min-h-[80vh] p-6 overflow-y-auto m-0 md:m-4 bg-[#CDDAEA33] rounded-2xl font-normal font-varela-round"
+  >
+    <div className="w-full flex flex-col h-full">
+      
+      <div className="flex-1">
         <div>
-          <h1 className="text-2xl font-semibold mb-2">
+          <h1 className="text-3xl mb-2 font-varela-round dark:bg-gradient-to-r dark:from-[#fff] dark:to-[#fff] bg-gradient-to-r from-[#009588] to-[#004487] bg-clip-text text-transparent">
             Hello Admin, How can I assist you today?
           </h1>
-          <p className="text-muted-foreground">
+          <p className="text-muted-foreground pt-4 text-lg">
             I&apos;m your AI Lawyer, here to provide answers to your legal
             queries. Before we begin, I need some information from you. Please
             select the relevant options below and submit them. I&apos;ll
@@ -48,74 +96,64 @@ const AILawyerConfigForm: React.FC<AILawyerConfigFormProps> = ({
           </p>
         </div>
 
-        <div className="space-y-4">
-          <h3 className="text-lg font-semibold">Configure Your Chat Settings</h3>
+        <div className="space-y-4 mt-6">
+          <div className="space-y-4">
+            <h3 className="text-xl font-semibold pb-3">Configure Your Chat Settings</h3>
 
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
-            {/* Language */}
-            <div>
-              <Label htmlFor="language" className="mb-2 block">
-                Select Language
-              </Label>
-              <Select
-                onValueChange={(value) => setValue("language", value)}
-              >
-                <SelectTrigger>
-                  <SelectValue placeholder="English" />
-                </SelectTrigger>
-                <SelectContent>
-                  <SelectItem value="english">English</SelectItem>
-                  <SelectItem value="spanish">Spanish</SelectItem>
-                </SelectContent>
-              </Select>
+            <div className="grid grid-cols-1 lg:grid-cols-3 gap-4">
+              <FormSelect
+                control={control}
+                rules={{ required: true }} 
+                name="language"
+                label="Select Language"
+                placeholder="English"
+                options={[
+                  { label: "English", value: "english" },
+                  { label: "Spanish", value: "spanish" },
+                ]}
+              />
+
+              <FormSelect
+                control={control}
+                name="country"
+                label="Select Country"
+                rules={{ required: true }} 
+                placeholder="India"
+                options={[
+                  { label: "India", value: "india" },
+                  { label: "USA", value: "usa" },
+                ]}
+              />
+
+              <FormSelect
+                control={control}
+                name="type"
+                label="Select Type"
+                rules={{ required: true }} 
+                placeholder="Contract AI Lawyer"
+                options={[
+                  { label: "Contract AI Lawyer", value: "contract" },
+                ]}
+              />
             </div>
 
-            {/* Country */}
-            <div>
-              <Label htmlFor="country" className="mb-2 block">
-                Select Country
-              </Label>
-              <Select onValueChange={(value) => setValue("country", value)}>
-                <SelectTrigger>
-                  <SelectValue placeholder="India" />
-                </SelectTrigger>
-                <SelectContent>
-                  <SelectItem value="india">India</SelectItem>
-                  <SelectItem value="usa">USA</SelectItem>
-                </SelectContent>
-              </Select>
-            </div>
-
-            {/* Type */}
-            <div>
-              <Label htmlFor="type" className="mb-2 block">
-                Select Type
-              </Label>
-              <Select onValueChange={(value) => setValue("type", value)}>
-                <SelectTrigger>
-                  <SelectValue placeholder="Contract AI Lawyer" />
-                </SelectTrigger>
-                <SelectContent>
-                  <SelectItem value="contract">Contract AI Lawyer</SelectItem>
-                </SelectContent>
-              </Select>
-            </div>
-          </div>
-
-          <p className="text-sm text-muted-foreground">
-            Contract Drafting & Review, Contract Compliance Monitoring, Risk
-            Identification and Mitigation, Legal Clauses Standardization,
-            Contract Negotiation Assistance, Performance and Termination
-            Clauses
-          </p>
-
-          <div className="flex justify-end">
-            <Button type="submit">Create Your Lawyer Chat</Button>
+            <p className="text-lg text-muted-foreground pt-2">
+              Contract Drafting & Review, Contract Compliance Monitoring, Risk
+              Identification and Mitigation, Legal Clauses Standardization,
+              Contract Negotiation Assistance, Performance and Termination
+              Clauses
+            </p>
           </div>
         </div>
       </div>
-    </form>
-  );
+
+     
+      <div className="pt-6 mt-auto w-fit ml-auto md:mr-8 md:mb-8">
+        <Button type="submit" className="w-full text-base cursor-pointer dark:bg-white dark:text-black" disabled={!isValid}>Create Your Lawyer Chat</Button>
+      </div>
+    </div>
+  </form>
+);
 };
 
 export default AILawyerConfigForm;
