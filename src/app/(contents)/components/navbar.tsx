@@ -27,7 +27,7 @@ import Image from "next/image";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { useState } from "react";
-
+import { UserAvatarMenu } from "@/components/avatar";
 interface NavigationItem {
   title: string;
   href: string;
@@ -140,31 +140,13 @@ export default function Navbar() {
           <Menu size={24} className="text-gray-500" />
         </button>
         <Image src="/bell.svg" alt="bell" width={18} height={18} />
-        <DropdownMenu>
-          <DropdownMenuTrigger asChild>
-            <Avatar className="cursor-pointer h-8 w-8">
-              <AvatarImage src="/avatar.svg" alt="@user" />
-              <AvatarFallback>SA</AvatarFallback>
-            </Avatar>
-          </DropdownMenuTrigger>
-          <DropdownMenuContent align="end" className="w-44 mt-6 rounded-2xl">
-            <DropdownMenuLabel className="text-base font-semibold font-quicksand">
-              Super Admin
-            </DropdownMenuLabel>
-            <DropdownMenuItem className="text-sm font-medium font-quicksand">
-              My Profile
-            </DropdownMenuItem>
-            <DropdownMenuItem className="text-sm font-medium font-quicksand">
-              Dashboard
-            </DropdownMenuItem>
-            <DropdownMenuItem className="text-sm font-medium font-quicksand">
-              Settings
-            </DropdownMenuItem>
-            <DropdownMenuItem className="text-sm font-medium font-quicksand">
-              Logout
-            </DropdownMenuItem>
-          </DropdownMenuContent>
-        </DropdownMenu>
+        <UserAvatarMenu
+              src="/avatar.svg"
+              alt="@user"
+              fallback="AJ"
+              name="Super Admin"
+            />
+        
       </div>
 
       {/* Mobile Menu */}

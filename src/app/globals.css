@@ -285,3 +285,10 @@ textarea:active {
 .sidebar .bg-sidebar {
   background-color: var(--sidebar-background);
 }
+
+[data-slot="sidebar-container"],[data-slot="sidebar-container"]:hover {
+  border-right: 0px;
+}
+[data-slot="sidebar-rail"]::after{
+ width:0px
+}
