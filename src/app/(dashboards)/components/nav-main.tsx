@@ -97,12 +97,12 @@ export function NavMain({
                         <SidebarMenuSubButton 
                           asChild 
                           className={`active:bg-white hover:bg-white transition-all duration-300 ease-in-out ${
-                            isSubActive ? 'bg-blue-50' : ''
+                            isSubActive ? '' : ''
                           }`}
                         >
                           <a href={subItem.url}>
                             <span className={
-                              isSubActive ? 'text-blue-600' : 'text-[#A3AED0] hover:!text-[#004487]'
+                              isSubActive ? 'text-[#004487]' : 'text-[#A3AED0] hover:!text-[#004487]'
                             }>
                               {subItem.title}
                             </span>

@@ -52,7 +52,7 @@ const data = {
       items: [
         {
           title: "Gen AI",
-          url: "#",
+          url: "consumption/gen-ai",
         },
         {
           title: "Legal AI",
