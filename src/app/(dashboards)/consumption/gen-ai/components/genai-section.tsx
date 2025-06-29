@@ -50,7 +50,7 @@ export const GenAiSection = ({
           <StatCard key={idx} {...card} />
         ))}
       </div>
-     <div className="max-h-[60vh] overflow-y-auto scrollbar-hide  mt-5  rounded-2xl">
+     <div className="max-h-[60vh] overflow-y-auto scrollbar-hide  mt-5  rounded-2xl h-full">
       <TableSection
         OrgTableData={OrgTableData}
       />

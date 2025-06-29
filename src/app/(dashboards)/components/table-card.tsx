@@ -10,7 +10,7 @@ type TableCardProps = {
 
 export default function TableCard({ title, children }: TableCardProps) {
   return (
-    <Card className="bg-white rounded-2xl shadow-none border-none w-full">
+    <Card className="bg-white rounded-2xl shadow-none border-none w-full h-full">
       <CardContent className="p-0 px-6">
         <div className="flex items-center justify-between mb-4">
           <h2 className="text-xl font-bold text-[#1f2937]">{title}</h2>

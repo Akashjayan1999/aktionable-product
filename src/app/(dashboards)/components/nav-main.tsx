@@ -67,7 +67,7 @@ export function NavMain({
   }
 
   return (
-    <SidebarGroup className="pr-0 pl-8 group-data-[collapsible=icon]:pl-2">
+    <SidebarGroup className="pr-0 pl-8 group-data-[collapsible=icon]:pl-2 font-dmsans">
       <SidebarMenu>
         {items.map((item) => {
           const isMainActive = isItemActive(item.title, item.url)
