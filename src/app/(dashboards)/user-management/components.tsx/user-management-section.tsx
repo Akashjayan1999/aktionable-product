@@ -46,11 +46,12 @@ export const UserManagementSection = ({
           <StatCard key={idx} {...card} />
         ))}
       </div>
-
+      <div className="h-full">
       <UserTableSection
         fullUserData={fullUserData}
         percentUserData={percentUserData}
       />
+      </div>
     </div>
   );
 };

@@ -62,12 +62,12 @@ export function UserTableSection({
     <div className="mx-4 pt-5 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
       <div className="lg:col-span-2 h-full">
         <TableCard title="Users: Testadmin">
-          <DataTable columns={fullUserColumns} data={fullUserData} className="min-h-64 max-h-64"/>
+          <DataTable columns={fullUserColumns} data={fullUserData} className="min-h-64 h-64 max-h-64"/>
         </TableCard>
       </div>
       <div className="lg:col-span-1 h-full">
         <TableCard title="Users: Testadmin">
-          <DataTable columns={percentUserColumns} data={percentUserData} className="min-h-64 max-h-64"/>
+          <DataTable columns={percentUserColumns} data={percentUserData} className="min-h-64 h-64 max-h-64"/>
         </TableCard>
       </div>
     </div>

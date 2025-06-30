@@ -27,7 +27,7 @@ export function DataTable<TData>({
 
   return (
     <div className="overflow-x-auto ">
-      <table className={`w-full text-sm  ${className} `} {...rest}>
+      <table className={`w-full text-sm min-w-max ${className} `} {...rest}>
         <thead className="text-muted-foreground">
           {table.getHeaderGroups().map((headerGroup) => (
             <tr key={headerGroup.id}>
