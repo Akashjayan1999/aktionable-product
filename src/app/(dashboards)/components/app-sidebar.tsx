@@ -28,47 +28,47 @@ const data = {
   navMain: [
     {
       title: "DashBoard",
-      url: "#",
+      url: "/dashboard",
       icon: Home,
       isActive: true,
      
     },
     {
       title: "Organization",
-      url: "#",
+      url: "/organization",
       icon: ShoppingCart,
       
     },
     {
       title: "User Management",
-      url: "#",
+      url: "/user-management",
       icon: ChartNoAxesColumn,
       
     },
     {
       title: "Consumption",
-      url: "#",
+      url: "/consumption",
       icon: LayoutDashboard,
       items: [
         {
           title: "Gen AI",
-          url: "consumption/gen-ai",
+          url: "/consumption/gen-ai",
         },
         {
           title: "Legal AI",
-          url: "#",
+          url: "/consumption/legal-ai",
         }
       ],
     },
     {
       title: "Document Management",
-      url: "#",
+      url: "/document-management",
       icon: User,
       
     },
     {
       title: "Price Model",
-      url: "#",
+      url: "/price-model",
       icon: BriefcaseBusiness,
       
     },

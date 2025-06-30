@@ -65,7 +65,7 @@ export const OrganizationSection = ({
           <TableSection OrgData={OrgData} />
         </div>
         <div className="md:col-span-1 h-full ">
-          <PieChartItem data={pieChartData} colors={["#004487", "#009588", "#05CD99", "#A3AED0"]}/>
+          <PieChartItem data={pieChartData} />
         </div>
       </div>
 

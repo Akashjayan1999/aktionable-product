@@ -26,7 +26,7 @@ export default function StatCard({
   
 
 }: StatCardProps) {
-  console.log(percentage)
+  
   return (
     <Card className="bg-white rounded-2xl shadow-none w-full border-none ">
       <CardContent className="flex items-center space-x-3 py-0">

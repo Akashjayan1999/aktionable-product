@@ -1,6 +1,6 @@
 "use client"
 
-import { usePathname } from "next/navigation"
+import { usePathname,useRouter } from "next/navigation"
 import { ChevronRight, type LucideIcon } from "lucide-react"
 
 // Removed Collapsible imports - no longer needed
@@ -14,6 +14,8 @@ import {
   SidebarMenuSubButton,
   SidebarMenuSubItem,
 } from "@/components/ui/sidebar"
+import Link from "next/link"
+
 
 // Path mapping array
 const pathMapping = [
@@ -41,7 +43,7 @@ export function NavMain({
   }[]
 }) {
   const pathname = usePathname()
-
+  const router = useRouter()
   // Helper function to check if an item is active
   const isItemActive = (title: string, url: string) => {
     const mappedPath = pathMapping.find(item => item.title === title)
@@ -65,7 +67,12 @@ export function NavMain({
     if (!subItems) return false
     return subItems.some(subItem => isSubItemActive(subItem.title, subItem.url, parentTitle))
   }
-
+ const handleSubItemClick = (url: string) => {
+  
+   
+      router.push(url)
+    
+  }
   return (
     <SidebarGroup className="pr-0 pl-8 group-data-[collapsible=icon]:pl-2 font-dmsans">
       <SidebarMenu>
@@ -82,6 +89,7 @@ export function NavMain({
                     ? 'text-[#004487]  border-r-3 border-[#004487]' 
                     : 'text-[#A3AED0]'
                 }`}
+                 onClick={() => handleSubItemClick(item.url)}
               >
                 {item.icon && <item.icon />}
                 <span>{item.title}</span>
@@ -96,17 +104,20 @@ export function NavMain({
                       <SidebarMenuSubItem key={subItem.title} className="">
                         <SidebarMenuSubButton 
                           asChild 
-                          className={`active:bg-white hover:bg-white transition-all duration-300 ease-in-out ${
+                          className={`active:bg-white cursor-pointer hover:bg-white transition-all duration-300 ease-in-out ${
                             isSubActive ? '' : ''
                           }`}
+                          onClick={() => handleSubItemClick(subItem.url)}
                         >
-                          <a href={subItem.url}>
+                          
+                          <div>
                             <span className={
                               isSubActive ? 'text-[#004487]' : 'text-[#A3AED0] hover:!text-[#004487]'
                             }>
                               {subItem.title}
                             </span>
-                          </a>
+                          </div>
+                          
                         </SidebarMenuSubButton>
                       </SidebarMenuSubItem>
                     )

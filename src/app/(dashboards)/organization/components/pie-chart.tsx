@@ -13,7 +13,7 @@ interface PieDataItem {
 
 interface PieChartCardProps {
   data: PieDataItem[];
-  colors: string[];
+  colors?: string[];
   title?: string;
   subtitle?: string;
   labels?: string[];
@@ -21,7 +21,7 @@ interface PieChartCardProps {
 
 const PieChartStatusCard: React.FC<PieChartCardProps> = ({
   data,
-  colors,
+  colors=["#004487", "#009588", "#6AD2FF", "#EFF4FB"],
   title = "Projects / Bot Status",
   subtitle = "Monthly",
   labels = [],
