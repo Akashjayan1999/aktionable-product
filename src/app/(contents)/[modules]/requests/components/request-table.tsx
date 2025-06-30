@@ -24,12 +24,14 @@ export default function RequestTable({
     router.push(`/contraktai/requests/review?requestId=${id}`)
   }
   return (
-    <div className="p-4  font-varela-round">
-      <h2 className="text-lg font-normal mb-2 ">
-        {subTitle} ({RequestData.length})
-      </h2>
-      <div className="rounded-2xl bg-[rgba(205,218,234,0.2)] p-4">
-      <div className="grid grid-cols-4 font-medium text-lg font-quicksand px-4 py-2 ">
+    <div className="p-4 font-varela-round">
+  <h2 className="text-lg font-normal mb-2">
+    {subTitle} ({RequestData.length})
+  </h2>
+
+  <div className="rounded-2xl bg-[rgba(205,218,234,0.2)] p-4 overflow-x-auto">
+    <div className="min-w-[700px]">
+      <div className="grid grid-cols-4 font-medium text-lg font-quicksand px-4 py-2 whitespace-nowrap">
         <span>Project Name</span>
         <span className="justify-self-center">Requested By</span>
         <span className="justify-self-center">Requests</span>
@@ -39,23 +41,24 @@ export default function RequestTable({
       {RequestData.map((item, index) => (
         <div
           key={index}
-          className="grid grid-cols-4 items-center px-4 py-3 text-base last:border-none "
+          className="grid grid-cols-4 items-center px-4 py-3 text-base whitespace-nowrap"
         >
-          <span className="">{item.projectName}</span>
-          <span className=" justify-self-center">{item.requestedUser}</span>
-          <span className=" justify-self-center">{item.requests}</span>
+          <span>{item.projectName}</span>
+          <span className="justify-self-center">{item.requestedUser}</span>
+          <span className="justify-self-center">{item.requests}</span>
           <div className="justify-self-center">
             <Button
               variant="primary"
-              className="text-base px-6 !py-4 cursor-pointer"
+              className="text-base px-6 py-2 cursor-pointer"
               onClick={() => handleReview(index)}
-             >
+            >
               Review
             </Button>
           </div>
         </div>
       ))}
-      </div>
     </div>
+  </div>
+</div>
   )
 }
