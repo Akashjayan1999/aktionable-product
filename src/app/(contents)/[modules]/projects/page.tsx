@@ -1,5 +1,5 @@
-import { ProjectSection } from "./components.tsx/project-section";
-import type { Project } from "./components.tsx/project-section";
+import { ProjectSection } from "./components/project-section";
+import type { Project } from "./components/project-section";
 import { notFound } from "next/navigation";
 
 interface ModuleProjects {

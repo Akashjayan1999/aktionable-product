@@ -7,7 +7,7 @@ interface RoutesInfo {
 }
 
 export const routesInfo: RoutesInfo = {
-  contraktai: ["projects","completed-projects","ai-lawyer"],
+  contraktai: ["projects","completed-projects","ai-lawyer","requests"],
   adoptiq: ["projects","chats","actionable-bot"],
   medusaai: ["projects"]
 };

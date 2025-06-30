@@ -41,11 +41,10 @@ export default async function Page({
         "Get summary quickly, identify important terms, and analyse your legal documents.",
     },
   };
-  console.log("sd",await params)
+ 
   const { modules } = await params;
   const selectedModule = modulesData[modules as keyof typeof modulesData];
-  console.log("Selected module:", selectedModule);
-  console.log("Modules:", modules);
+  
   if (!selectedModule) {
     console.log("mo not found");
     return notFound();
