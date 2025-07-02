@@ -90,11 +90,11 @@ export default function IssueTable({ data,pageRef }: IssueTableProps) {
         <span className='text-[#424242]'>{pageRef}</span>
       <hr />
       </div>
-      { questionId && <AddFeedbackModal
+      <AddFeedbackModal
         open={open}
         onClose={toggleOpen}
-        questionId={questionId}
-      />}
+        questionId={questionId||0}
+      />
     </div>
   )
 }

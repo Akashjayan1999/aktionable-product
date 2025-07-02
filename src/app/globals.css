@@ -292,3 +292,13 @@ textarea:active {
 [data-slot="sidebar-rail"]::after{
  width:0px
 }
+
+
+[data-slot="dialog-close"] [data-slot="dialog-close"]{
+  display: none !important;
+}
+
+.feedback-form-container [data-placeholder] {
+  color: rgba(0, 0, 0, 0.5) !important;
+  font-weight: normal !important;
+}

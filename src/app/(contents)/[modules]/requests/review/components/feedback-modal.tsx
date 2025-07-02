@@ -1,16 +1,9 @@
-import {
-  Dialog,
-  DialogContent,
-  DialogHeader,
-  DialogTitle,
-  DialogClose,
-} from "@/components/ui/dialog"
+
 import { Button } from "@/components/ui/button"
 import { Textarea } from "@/components/ui/textarea"
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select"
-import { X } from "lucide-react"
 import { useForm, Controller } from "react-hook-form"
-
+import DialogBox from "@/components/ui/dialogBox"
 interface AddFeedbackModalProps {
   open: boolean
   onClose: () => void
@@ -20,6 +13,7 @@ interface AddFeedbackModalProps {
 export type FeedbackFormData = {
   feedbackType: string
   comments: string
+  questionId: number
 }
 
 export default function AddFeedbackModal({
@@ -47,35 +41,26 @@ export default function AddFeedbackModal({
 
   const handleFormSubmit = (data: FeedbackFormData) => {
     console.log(data)
+    console.log(questionId)
     handleDialogClose()
   }
 
   return (
-    <Dialog open={open} onOpenChange={(val) => !val && handleDialogClose()}>
-      <DialogContent className="p-0 overflow-hidden max-w-lg">
-        <div className="bg-[#004487] text-white px-6 py-4 flex items-center justify-between">
-          <DialogTitle className="text-lg">Add Feedback</DialogTitle>
-          <DialogClose asChild>
-            <button className="text-white">
-              <X size={20} />
-            </button>
-          </DialogClose>
-        </div>
-
-        <form onSubmit={handleSubmit(handleFormSubmit)} className="p-6 space-y-4">
+     <DialogBox open={open} onClose={onClose} title="Add Feedback">
+          <form onSubmit={handleSubmit(handleFormSubmit)} className="p-6 pt-3 space-y-4">
           
-          <div>
-            <label className="block text-sm font-medium mb-1">Select Feedback</label>
+          <div className="feedback-form-container">
+            <label className="block text-sm font-medium mb-1 ">Select Feedback</label>
             <Controller
               control={control}
               name="feedbackType"
               rules={{ required: "Feedback type is required" }}
               render={({ field }) => (
-                <Select onValueChange={field.onChange} value={field.value}>
-                  <SelectTrigger className="w-full">
-                    <SelectValue placeholder="Select Feedback" />
+                <Select onValueChange={field.onChange} value={field.value} >
+                  <SelectTrigger className="w-full shadow-none border-1 border-[rgba(76,76,76,0.4)]">
+                    <SelectValue placeholder="Select Feedback" className="" />
                   </SelectTrigger>
-                  <SelectContent>
+                  <SelectContent className="font-varela-round">
                     <SelectItem value="Positive">Positive</SelectItem>
                     <SelectItem value="Neutral">Neutral</SelectItem>
                     <SelectItem value="Negative">Negative</SelectItem>
@@ -94,7 +79,7 @@ export default function AddFeedbackModal({
             <Textarea
               {...register("comments", { required: "Comments are required" })}
               placeholder="Enter your comments"
-              className="w-full"
+              className="w-full shadow-none border-1 border-[rgba(76,76,76,0.4)]  !placeholder-[rgba(0,0,0,0.5)] focus:!ring-0 "
               rows={4}
             />
             {errors.comments && (
@@ -105,14 +90,14 @@ export default function AddFeedbackModal({
          
           <div className="pt-2">
             <Button
+             variant="primary"
               type="submit"
-              className="bg-[#004487] hover:bg-[#00346b] rounded-full"
+              className=" rounded-full text-base !py-4 px-6"
             >
               Submit
             </Button>
           </div>
         </form>
-      </DialogContent>
-    </Dialog>
+       </DialogBox>
   )
 }

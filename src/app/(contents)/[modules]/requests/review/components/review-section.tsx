@@ -1,6 +1,7 @@
 import IssueTabs from "./issue-tab";
 import { Issue } from "./issue-table";
 import TitleWithBackButton from "@/components/title-with-backbutton";
+import DocumentToggle from "./download-toogle";
 interface LeaseSummaryCardProps {
   title: string;
   summary: {
@@ -22,6 +23,9 @@ export default function ReviewSection({
   return (
     <div className="py-12 px-0 relative mt-25 mx-5 md:mx-[48px] h-min-2 font-varela-round">
       <TitleWithBackButton title={title} backHref="#" />
+      
+      <DocumentToggle/>
+      
       <div className="p-4 md:p-6 bg-[rgba(205,218,234,0.2)] rounded-2xl space-y-4 min-h-[50vh]">
         <div className="text-2xl font-normal">{summary.title}</div>
 
