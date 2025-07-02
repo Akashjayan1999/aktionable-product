@@ -12,7 +12,7 @@ export default function TitleWithBackButton({
   backHref,
 }: HeaderWithBackButtonProps) {
   return (
-    <div className="flex justify-between items-center">
+    <div className="flex justify-between ">
       <div className="font-varela-round text-3xl font-normal mb-6 bg-gradient-to-r from-[#009588] to-[#004487] bg-clip-text text-transparent">
         {title}
       </div>

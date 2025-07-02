@@ -302,3 +302,8 @@ textarea:active {
   color: rgba(0, 0, 0, 0.5) !important;
   font-weight: normal !important;
 }
+
+.project-container [data-placeholder] {
+  color: rgba(0, 0, 0, 0.5) !important;
+  font-weight: normal !important;
+}
