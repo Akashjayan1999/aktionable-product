@@ -1,100 +1,89 @@
-'use client'
+"use client";
 
-import { Input } from "@/components/ui/input"
-import { Textarea } from "@/components/ui/textarea"
-import { Button } from "@/components/ui/button"
+import { Input } from "@/components/ui/input";
+import { Textarea } from "@/components/ui/textarea";
+import { Button } from "@/components/ui/button";
 import {
   Select,
   SelectContent,
   SelectItem,
   SelectTrigger,
   SelectValue,
-} from "@/components/ui/select"
-import { useForm, Controller } from "react-hook-form"
-import { useRouter, useSearchParams } from "next/navigation"
-
-type FormValues = {
-  name: string
-  description: string
-  projectType: string
-}
-
+} from "@/components/ui/select";
+import { useForm, Controller } from "react-hook-form";
+import { useRouter, useSearchParams } from "next/navigation";
+import { CustomTextarea } from "@/components/ui/custom-textarea";
+import { CustomInput } from "@/components/ui/custom-input";
+import { CustomSelect } from "@/components/ui/custom-selectbox";
+import { createProjectFormSchema } from "@/lib/zod-schema";
+import { z } from "zod";
+import { zodResolver } from "@hookform/resolvers/zod";
+// type FormValues = {
+//   name: string;
+//   description: string;
+//   projectType: string;
+// };
+type FormValues = z.infer<typeof createProjectFormSchema>;
 export default function CreateProjectFormFields() {
   const {
     register,
     handleSubmit,
     control,
     formState: { errors },
-  } = useForm<FormValues>()
+  } = useForm<FormValues>({
+    resolver: zodResolver(createProjectFormSchema),
+  });
 
-  const router = useRouter()
-  const searchParams = useSearchParams()
-  const step = parseInt(searchParams.get("step") || "0")
+  const router = useRouter();
+  const searchParams = useSearchParams();
+  const step = parseInt(searchParams.get("step") || "0");
 
   const onSubmit = (data: FormValues) => {
-    console.log("Form submitted", data)
-    router.push(`?step=${step + 1}`) // go to next step
-  }
+    console.log("Form submitted", data);
+    router.push(`?step=${step + 1}`); // go to next step
+  };
 
   return (
     <div className="bg-[#CDDAEA33] rounded-2xl p-6 space-y-6 font-varela-round font-normal">
       <form onSubmit={handleSubmit(onSubmit)} className="space-y-6">
-        <div>
-          <label className="block text-base font-medium mb-1">
-            Project Name<span className="text-red-500">*</span>
-          </label>
-          <Input
-            {...register("name", { required: "Project name is required" })}
-            placeholder="Enter project name"
-            className="shadow-none border-1 border-[rgba(76,76,76,0.4)] h-12 !placeholder-[rgba(0,0,0,0.5)] focus:!ring-0"
-          />
-          {errors.name && (
-            <p className="text-red-500 text-sm mt-1">{errors.name.message}</p>
-          )}
-        </div>
+        <CustomInput
+          label="Project Name"
+          requiredMark
+          placeholder="Enter project name"
+          error={errors.name?.message}
+          {...register("name", { required: "Project name is required" })}
+        />
 
-        <div>
-          <label className="block text-base font-medium mb-1">
-            Project Description<span className="text-red-500">*</span>
-          </label>
-          <Textarea
-            {...register("description", { required: "Project description is required" })}
-            rows={4}
-            placeholder="Enter Project Description"
-            className="shadow-none border-1 border-[rgba(76,76,76,0.4)] h-25  !placeholder-[rgba(0,0,0,0.5)] focus:!ring-0"
-          />
-          {errors.description && (
-            <p className="text-red-500 text-sm mt-1">{errors.description.message}</p>
-          )}
-        </div>
+        <CustomTextarea
+          label="Project Description"
+          requiredMark
+          placeholder="Enter Project Description"
+          error={errors.description?.message}
+          rows={4}
+          {...register("description", {
+            required: "Project description is required",
+          })}
+        />
 
-        <div className="project-container">
-          <label className="block text-base font-medium mb-1">
-            Select Project Type<span className="text-red-500">*</span>
-          </label>
-          <Controller
-            name="projectType"
-            control={control}
-            rules={{ required: "Project type is required" }}
-            render={({ field }) => (
-              <Select onValueChange={field.onChange} value={field.value}>
-                <SelectTrigger className={`${errors.projectType ? "border-red-500" : ""} w-full !h-12 shadow-none border-1 border-[rgba(76,76,76,0.4)]`}>
-                  <SelectValue placeholder="Select Project Scope" />
-                </SelectTrigger>
-                <SelectContent className="font-varela-round">
-                  <SelectItem value="ml">Machine Learning</SelectItem>
-                  <SelectItem value="data">Data Engineering</SelectItem>
-                  <SelectItem value="web">Web App</SelectItem>
-                </SelectContent>
-              </Select>
-            )}
-          />
-          {errors.projectType && (
-            <p className="text-red-500 text-sm mt-1">
-              {errors.projectType.message}
-            </p>
+        <Controller
+          name="projectType"
+          control={control}
+          rules={{ required: "Project type is required" }}
+          render={({ field }) => (
+            <CustomSelect
+              label="Select Project Type"
+              requiredMark
+              error={errors.projectType?.message}
+              placeholder="Select Project Scope"
+              value={field.value}
+              onValueChange={field.onChange}
+            >
+              <SelectItem value="ml">Machine Learning</SelectItem>
+              <SelectItem value="data">Data Engineering</SelectItem>
+              <SelectItem value="web">Web App</SelectItem>
+            </CustomSelect>
           )}
-        </div>
+        />
 
         <div className="pt-4 flex justify-center">
           <Button
@@ -107,5 +96,5 @@ export default function CreateProjectFormFields() {
         </div>
       </form>
     </div>
-  )
+  );
 }

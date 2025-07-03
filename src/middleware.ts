@@ -1,53 +1,41 @@
 import { NextRequest, NextResponse } from 'next/server';
 
+
 interface RoutesInfo {
-  [key: string]: {
-    [key: string]: string[] | null;
-  };
+  [key: string]: string[];
+
+
 }
 
 export const routesInfo: RoutesInfo = {
-  contraktai: {
-    projects: null,
-    "completed-projects": null,
-    "ai-lawyer": null,
-    requests: ["review"],
-  },
-  adoptiq: {
-    projects: null,
-    chats: null,
-    "actionable-bot": null,
-    "create-projects": null,
-  },
-  medusaai: {
-    projects: null,
-  },
+  contraktai: ["projects","completed-projects","ai-lawyer","requests","create-contraktai"],
+  adoptiq: ["projects","chats","actionable-bot","create-projects"],
+  medusaai: ["projects"]
+
 };
 
 export function middleware(request: NextRequest): NextResponse {
   const pathname: string = request.nextUrl.pathname;
   const segments: string[] = pathname.split('/').filter(Boolean);
-
+  
+ 
   if (segments.length >= 2) {
-    const [module, item, third] = segments;
-
+    const [module, item]: [string, string] = [segments[0], segments[1]];
+    
+ 
     if (routesInfo.hasOwnProperty(module)) {
-      const allowedItems = routesInfo[module];
-      if (!allowedItems.hasOwnProperty(item)) {
+      const allowedItems: string[] = routesInfo[module];
+      
+
+      if (!allowedItems.includes(item as string)) {
+
+
         return NextResponse.rewrite(new URL('/404', request.url));
       }
-
-    
-      const allowedThird = allowedItems[item];
-      if (Array.isArray(allowedThird) && third) {
-        if (!allowedThird.includes(third)) {
-          return NextResponse.rewrite(new URL('/404', request.url));
-        }
-      }
-     
     }
-  }
 
+}
+  
   return NextResponse.next();
 }
 

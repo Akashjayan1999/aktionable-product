@@ -4,3 +4,23 @@ export const loginSchema = z.object({
   email: z.string().email("Invalid email address"),
   password: z.string().min(6, "Password must be at least 6 characters"),
 });
+
+
+export const createProjectFormSchema = z.object({
+  name: z.string().min(1, "Project name is required"),
+  description: z.string().min(1, "Project description is required"),
+  projectType: z.string().min(1, "Project type is required"),
+});
+
+export const createContraktaiFormSchema = z.object({
+  projectName: z.string().min(1, "Project name is required"),
+  projectDescription: z.string().min(1, "Project description is required"),
+  projectScope: z.string().min(1, "Project scope is required"),
+  documentType: z.string().min(1, "Document type is required"),
+  document: z.instanceof(File, { message: "Document is required" })
+  .refine((file) => file.size <= 25 * 1024 * 1024, {
+    message: "File must be less than 25MB"
+  }),
+  languages: z.array(z.string()),
+  customQuestion: z.string().optional(),
+});
