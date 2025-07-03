@@ -61,10 +61,9 @@ const ContraktaiForm: React.FC = () => {
   ];
 
   const projectScopes = [
-    { value: "small", label: "Small (1-10 pages)" },
-    { value: "medium", label: "Medium (11-50 pages)" },
-    { value: "large", label: "Large (51-100 pages)" },
-    { value: "enterprise", label: "Enterprise (100+ pages)" },
+    { value: "individal", label: "Individual" },
+    { value: "group", label: "Group" },
+    { value: "Team", label: "Team" },
   ];
 
   const documentTypes = [
@@ -104,9 +103,9 @@ const ContraktaiForm: React.FC = () => {
       "image/jpg",
       "image/png",
       "image/gif",
-      "application/pdf",
-      "application/msword",
-      "application/vnd.openxmlformats-officedocument.wordprocessingml.document",
+    //   "application/pdf",
+    //   "application/msword",
+    //   "application/vnd.openxmlformats-officedocument.wordprocessingml.document",
     ];
     return allowedTypes.includes(file.type);
   }, []);
@@ -128,7 +127,7 @@ const ContraktaiForm: React.FC = () => {
 
     if (!isValidFileType(data.document)) {
       alert(
-        "Please upload a valid file type (PDF, DOC, DOCX, JPG, JPEG, PNG, GIF)"
+        "Please upload a valid file type (JPG, JPEG, PNG, GIF)"
       );
       return;
     }
@@ -146,7 +145,6 @@ const ContraktaiForm: React.FC = () => {
     };
 
     console.log("Form submitted:", formData);
-    alert("Form submitted successfully! Check console for details.");
   };
 
   return (
@@ -248,9 +246,9 @@ const ContraktaiForm: React.FC = () => {
             watch={watch}
             error={errors.document}
             required
-            accept=".pdf,.doc,.docx,.jpg,.jpeg,.png,.gif"
+            accept=".jpg,.jpeg,.png,.gif"
             maxSize={25}
-            supportedFormats="PDF, DOC, DOCX, JPG, JPEG, PNG, GIF"
+            supportedFormats="JPG, JPEG, PNG, GIF"
           />
 
           <div className="space-y-3">
@@ -260,7 +258,7 @@ const ContraktaiForm: React.FC = () => {
                 (by Default English Selected)
               </span>
             </Label>
-            <div className="grid grid-cols-3 gap-3">
+            <div className="grid grid-cols-2 md:grid-cols-3 gap-3">
               {languages.map((language) => (
                 <div
                   key={language.value}
@@ -275,7 +273,7 @@ const ContraktaiForm: React.FC = () => {
                   />
                   <Label
                     htmlFor={language.value}
-                    className="text-base font-normal cursor-pointer"
+                    className="text-base font-normal text-[#424242] cursor-pointer"
                   >
                     {language.label}
                   </Label>

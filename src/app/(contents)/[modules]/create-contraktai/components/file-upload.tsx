@@ -2,10 +2,15 @@
 
 import React, { useCallback, useRef } from "react";
 import { useDropzone } from "react-dropzone";
-import { UseFormRegister, UseFormSetValue, UseFormWatch } from "react-hook-form";
-import { Upload, X, FileText, Image } from "lucide-react";
+import {
+  UseFormRegister,
+  UseFormSetValue,
+  UseFormWatch,
+} from "react-hook-form";
+import { Upload, X, FileText, Image as LucideImage } from "lucide-react";
 import { Label } from "@/components/ui/label";
 import { Button } from "@/components/ui/button";
+import Image from "next/image";
 
 interface FileUploadProps {
   label: string;
@@ -30,7 +35,7 @@ const FileUpload: React.FC<FileUploadProps> = ({
   required = false,
   accept = ".pdf,.doc,.docx,.jpg,.jpeg,.png,.gif",
   maxSize = 25,
-  supportedFormats = "PDF, DOC, DOCX, JPG, JPEG, PNG, GIF"
+  supportedFormats = "PDF, DOC, DOCX, JPG, JPEG, PNG, GIF",
 }) => {
   const selectedFile = watch(name);
   const fileInputRef = useRef<HTMLInputElement | null>(null);
@@ -45,35 +50,33 @@ const FileUpload: React.FC<FileUploadProps> = ({
     [setValue, name]
   );
 
-  const {
-    getRootProps,
-    getInputProps,
-    isDragActive,
-    isDragReject
-  } = useDropzone({
-    onDrop,
-    noClick: true,
-    noKeyboard: true,
-    accept: accept
-      .split(",")
-      .map((ext) => ext.trim())
-      .reduce((acc, ext) => {
-        if (ext.startsWith(".")) {
-          if ([".jpg", ".jpeg", ".png", ".gif"].includes(ext)) {
-            acc["image/*"] = [...(acc["image/*"] || []), ext];
-          } else if (ext === ".pdf") {
-            acc["application/pdf"] = [ext];
-          } else if (ext === ".doc") {
-            acc["application/msword"] = [ext];
-          } else if (ext === ".docx") {
-            acc["application/vnd.openxmlformats-officedocument.wordprocessingml.document"] = [ext];
+  const { getRootProps, getInputProps, isDragActive, isDragReject } =
+    useDropzone({
+      onDrop,
+      noClick: true,
+      noKeyboard: true,
+      accept: accept
+        .split(",")
+        .map((ext) => ext.trim())
+        .reduce((acc, ext) => {
+          if (ext.startsWith(".")) {
+            if ([".jpg", ".jpeg", ".png", ".gif"].includes(ext)) {
+              acc["image/*"] = [...(acc["image/*"] || []), ext];
+            } else if (ext === ".pdf") {
+              acc["application/pdf"] = [ext];
+            } else if (ext === ".doc") {
+              acc["application/msword"] = [ext];
+            } else if (ext === ".docx") {
+              acc[
+                "application/vnd.openxmlformats-officedocument.wordprocessingml.document"
+              ] = [ext];
+            }
           }
-        }
-        return acc;
-      }, {} as Record<string, string[]>),
-    maxSize: maxSize * 1024 * 1024,
-    multiple: false
-  });
+          return acc;
+        }, {} as Record<string, string[]>),
+      maxSize: maxSize * 1024 * 1024,
+      multiple: false,
+    });
 
   const handleFileInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const file = e.target.files?.[0];
@@ -100,13 +103,13 @@ const FileUpload: React.FC<FileUploadProps> = ({
   const getFileIcon = (fileName: string) => {
     const extension = fileName.split(".").pop()?.toLowerCase();
     if (["jpg", "jpeg", "png", "gif"].includes(extension || "")) {
-      return <Image className="w-6 h-6 text-blue-500" />;
+      return <LucideImage className="w-6 h-6 text-blue-500" />;
     }
     return <FileText className="w-6 h-6 text-blue-500" />;
   };
 
   const { ref: registerRef, ...registerRest } = register(name, {
-    required: required ? `${label} is required` : false
+    required: required ? `${label} is required` : false,
   });
 
   return (
@@ -164,32 +167,35 @@ const FileUpload: React.FC<FileUploadProps> = ({
             onChange={handleFileInputChange}
             className="hidden"
           />
-          <div className="space-y-2">
-            <Upload
-              className={`w-8 h-8 mx-auto ${
-                isDragActive && !isDragReject
-                  ? "text-blue-500"
-                  : isDragReject
-                  ? "text-red-500"
-                  : "text-gray-400"
-              }`}
-            />
-            <div className="text-sm text-gray-600">
-              Drop your file here, or{" "}
+          <div className="space-y-2 ">
+            <div className="flex  justify-center">
+              <Image
+                src="/img.svg"
+                alt="Swap Icon"
+                width={40}
+                height={40}
+                className=""
+                loading="lazy"
+              />
+            </div>
+            <div className="text-base ">
+              Drop your image here, or{" "}
               <span
                 onClick={() => fileInputRef.current?.click()}
-                className="text-blue-500 hover:text-blue-600 underline cursor-pointer"
+                className="text-[#0385C5] hover:text-[#0385C5]  cursor-pointer"
               >
                 browse
               </span>
             </div>
-            <div className="text-xs text-gray-500">File Max size {maxSize}mb</div>
-            <div className="text-xs text-gray-500">Supported: {supportedFormats}</div>
+            <div className="text-xs">File Max size {maxSize}mb</div>
+            {/* <div className="text-xs text-gray-500">Supported: {supportedFormats}</div> */}
           </div>
         </div>
       )}
 
-      {error?.message && <p className="text-sm text-red-500">{error.message}</p>}
+      {error?.message && (
+        <p className="text-sm text-red-500">{error.message}</p>
+      )}
     </div>
   );
 };
