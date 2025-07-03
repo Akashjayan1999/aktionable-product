@@ -87,7 +87,7 @@ const ContraktaiForm: React.FC = () => {
         );
       }
     },
-    [watch, setValue]
+    [watch("languages"), setValue]
   );
 
   const selectedDocumentTypeLabel = useMemo(() => {

@@ -1,11 +1,11 @@
 import { notFound } from "next/navigation";
 import { CreateContraktaiSection } from "./components/create-contraktai-section";
-interface CreateProjectsTypes {
+interface CreateContraktAiProjectsTypes {
   title: string;
 }
 
 
-const CreateprojectModules: Record<string, CreateProjectsTypes> = {
+const CreateContraktAiProjectModules: Record<string, CreateContraktAiProjectsTypes> = {
   contraktai: {
     title: "Review Documents",
     
@@ -19,9 +19,9 @@ interface Props {
  
 }
 
-export default async function CreateProjectPage({ params  }: Props) {
+export default async function CreateContraktAiProjectPage({ params  }: Props) {
   const { modules } = await params;
-  const data = CreateprojectModules[modules as keyof typeof CreateprojectModules];
+  const data = CreateContraktAiProjectModules[modules as keyof typeof CreateContraktAiProjectModules];
 
   if (!data) return notFound();
   
