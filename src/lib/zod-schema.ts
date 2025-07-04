@@ -12,18 +12,25 @@ export const createProjectFormSchema = z.object({
   projectType: z.string().min(1, "Project type is required"),
 });
 
+export const documentField = z
+  .instanceof(File, { message: "Document is required" })
+  .refine((file) => file.size <= 25 * 1024 * 1024, {
+    message: "File must be less than 25MB",
+  });
+
+
+
 export const createContraktaiFormSchema = z.object({
   projectName: z.string().min(1, "Project name is required"),
   projectDescription: z.string().min(1, "Project description is required"),
   projectScope: z.string().min(1, "Project scope is required"),
   documentType: z.string().min(1, "Document type is required"),
-  document: z.instanceof(File, { message: "Document is required" })
-  .refine((file) => file.size <= 25 * 1024 * 1024, {
-    message: "File must be less than 25MB"
-  }),
+  document: documentField,
   languages: z.array(z.string()),
   customQuestion: z.string().optional(),
 });
+
+
 
 
 export const legalDocumentFormSchema = z.object({

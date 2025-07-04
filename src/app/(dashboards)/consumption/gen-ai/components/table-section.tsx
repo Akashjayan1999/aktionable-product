@@ -3,7 +3,6 @@ import React from "react";
 import TableCard from "@/app/(dashboards)/components/table-card";
 import { DataTable } from "@/app/(dashboards)/components/data-table";
 import { ColumnDef } from "@tanstack/react-table";
-import { CircleUser } from "lucide-react";
 
 type OrgTableRow = {
   org: string;

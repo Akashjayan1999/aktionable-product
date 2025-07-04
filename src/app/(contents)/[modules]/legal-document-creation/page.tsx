@@ -13,9 +13,7 @@ const legalDocumentCreationModules: Record<string, legalDocumentCreationTypes> =
 };
 
 interface Props {
-  params: {
-    modules: string;
-  };
+  params: Promise<{ modules: string }>;
  
 }
 

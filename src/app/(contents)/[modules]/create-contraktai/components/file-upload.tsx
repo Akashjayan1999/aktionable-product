@@ -7,17 +7,19 @@ import {
   UseFormSetValue,
   UseFormWatch,
 } from "react-hook-form";
-import { Upload, X, FileText, Image as LucideImage } from "lucide-react";
+import {  X, FileText, Image as LucideImage } from "lucide-react";
 import { Label } from "@/components/ui/label";
 import { Button } from "@/components/ui/button";
 import Image from "next/image";
-
+import { createContraktaiFormSchema } from "@/lib/zod-schema";
+import { z } from "zod";
+type CreateContraktaiFormValues = z.infer<typeof createContraktaiFormSchema>;
 interface FileUploadProps {
   label: string;
-  name: string;
-  register: UseFormRegister<any>;
-  setValue: UseFormSetValue<any>;
-  watch: UseFormWatch<any>;
+  name: keyof CreateContraktaiFormValues;
+  register: UseFormRegister<CreateContraktaiFormValues>;
+  setValue: UseFormSetValue<CreateContraktaiFormValues>;
+  watch: UseFormWatch<CreateContraktaiFormValues>;
   error?: { message?: string };
   required?: boolean;
   accept?: string;
@@ -35,7 +37,7 @@ const FileUpload: React.FC<FileUploadProps> = ({
   required = false,
   accept = ".pdf,.doc,.docx,.jpg,.jpeg,.png,.gif",
   maxSize = 25,
-  supportedFormats = "PDF, DOC, DOCX, JPG, JPEG, PNG, GIF",
+
 }) => {
   const selectedFile = watch(name);
   const fileInputRef = useRef<HTMLInputElement | null>(null);
@@ -86,7 +88,7 @@ const FileUpload: React.FC<FileUploadProps> = ({
   };
 
   const handleRemoveFile = () => {
-    setValue(name, null, { shouldValidate: true });
+    setValue(name, undefined as unknown as File, { shouldValidate: true });
     if (fileInputRef.current) {
       fileInputRef.current.value = "";
     }

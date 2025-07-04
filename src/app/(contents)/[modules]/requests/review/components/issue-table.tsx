@@ -50,7 +50,7 @@ export default function IssueTable({ data,pageRef }: IssueTableProps) {
       ),
     },
     ],
-    []
+    [toggleOpen]
   )
 
   const table = useReactTable({

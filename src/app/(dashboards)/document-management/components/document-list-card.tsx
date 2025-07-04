@@ -16,7 +16,6 @@ export function DocumentListCard({
   title,
   subtitle,
   items,
-  showActions = false,
   
 }: DocumentListCardProps) {
   return (

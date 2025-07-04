@@ -1,12 +1,11 @@
 "use client"
 
-import { usePathname,useRouter } from "next/navigation"
-import { ChevronRight, type LucideIcon } from "lucide-react"
+import { usePathname } from "next/navigation"
+import { type LucideIcon } from "lucide-react"
 
 // Removed Collapsible imports - no longer needed
 import {
   SidebarGroup,
-  SidebarGroupLabel,
   SidebarMenu,
   SidebarMenuButton,
   SidebarMenuItem,
@@ -43,7 +42,6 @@ export function NavMain({
   }[]
 }) {
   const pathname = usePathname()
-  const router = useRouter()
   // Helper function to check if an item is active
   const isItemActive = (title: string, url: string) => {
     const mappedPath = pathMapping.find(item => item.title === title)
@@ -67,12 +65,12 @@ export function NavMain({
     if (!subItems) return false
     return subItems.some(subItem => isSubItemActive(subItem.title, subItem.url, parentTitle))
   }
- const handleSubItemClick = (url: string) => {
+//  const handleSubItemClick = (url: string) => {
   
    
-      router.push(url)
+//       router.push(url)
     
-  }
+//   }
   return (
     <SidebarGroup className="pr-0 pl-8 group-data-[collapsible=icon]:pl-2 font-dmsans">
       <SidebarMenu>

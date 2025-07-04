@@ -7,7 +7,6 @@ import {
   XAxis,
   Tooltip,
   ResponsiveContainer,
-  Rectangle,
 } from "recharts";
 import { Card, CardContent, CardHeader } from "@/components/ui/card";
 import { Triangle } from "lucide-react";

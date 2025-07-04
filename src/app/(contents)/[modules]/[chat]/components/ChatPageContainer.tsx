@@ -17,16 +17,14 @@ interface ChatPageContainerProps {
 }
 
 const ChatPageContainer: React.FC<ChatPageContainerProps> = ({ chatConfig }) => {
-  const { isConfigured, setIsConfigured } = useChat();
+  const { isConfigured } = useChat();
   const searchParams = useSearchParams();
   const chatId = searchParams.get('id');
 
   const [isSidebarOpen, toggleSidebar] = useToggle(false);
   const isAILawyer = chatConfig.type === 'ai-lawyer';
 
-  const handleConfigSubmit = () => {
-    setIsConfigured(true);
-  };
+  
 
   const toogleSidebar = () => {
     toggleSidebar();
@@ -46,7 +44,7 @@ const ChatPageContainer: React.FC<ChatPageContainerProps> = ({ chatConfig }) => 
       />
       
       <div className="flex-1 flex flex-col min-w-0  ">
-        <ChatHeader title={chatConfig.displayName} toogleSidebar={toogleSidebar}/>
+        <ChatHeader  toogleSidebar={toogleSidebar}/>
         <main className="flex-1 flex flex-col">
           {showConfigForm ? (
             <AILawyerConfigForm  />

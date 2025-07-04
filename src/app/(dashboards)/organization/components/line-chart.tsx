@@ -1,6 +1,6 @@
 "use client";
 
-import React, { useEffect, useState } from "react";
+import React from "react";
 import {
   LineChart,
   Line,
@@ -10,8 +10,6 @@ import {
 } from "recharts";
 import { Card, CardContent, CardHeader } from "@/components/ui/card";
 import { Calendar,ChartNoAxesColumn,Triangle,CircleCheck } from "lucide-react";
-import { TrendingUp } from "lucide-react";
-import { C } from "vitest/dist/chunks/reporters.d.DL9pg5DB.js";
 
 const defaultLineData = [
   { label: "SEP", value: 85 },
@@ -37,13 +35,13 @@ export const LineChartItem: React.FC<LineChartProps> = ({
   amount = "+2.45%",
   subtitle = "Total Spent",
   growth = "On track",
-  status = "success",
+  // status = "success",
 }) => {
-  const [isClient, setIsClient] = useState(false);
+  // const [isClient, setIsClient] = useState(false);
 
-  useEffect(() => {
-    setIsClient(true);
-  }, []);
+  // useEffect(() => {
+  //   setIsClient(true);
+  // }, []);
   return (
     <Card className="w-full h-full shadow-none bg-white border-none rounded-2xl">
       <CardHeader className="pb-2">

@@ -7,7 +7,7 @@ import { notFound } from "next/navigation";
 export default async function Page({
   params,
 }: {
-  params: Promise<{ modules: string }>;
+  params:  Promise<{ modules: string }>;
 }) {
   const modulesData = {
     contraktai: {

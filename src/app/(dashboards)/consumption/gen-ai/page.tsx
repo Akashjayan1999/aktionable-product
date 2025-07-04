@@ -31,7 +31,7 @@ const OrgTableData = [
 ];
 
 interface Props {
-  searchParams: { [key: string]: string | string[] | undefined };
+  searchParams: Promise<{ [key: string]: string | string[] | undefined }>;
 }
 export default async function GenAiPage ({ searchParams  }: Props) {
   const searchParam = await searchParams;

@@ -13,10 +13,8 @@ const CreateprojectModules: Record<string, CreateProjectsTypes> = {
 };
 
 interface Props {
-  params: {
-    modules: string;
-  };
-  searchParams: { [key: string]: string | string[] | undefined };
+  params: Promise<{ modules: string }>;
+  searchParams: Promise<{ [key: string]: string | string[] | undefined }>;
 }
 
 export default async function CreateProjectPage({ params,searchParams  }: Props) {

@@ -9,7 +9,7 @@ import {
 import { TableHTMLAttributes } from "react";
 
 interface DataTableProps<TData> extends TableHTMLAttributes<HTMLTableElement> {
-  columns: ColumnDef<TData, any>[];
+  columns: ColumnDef<TData, unknown>[];
   data: TData[];
 }
 

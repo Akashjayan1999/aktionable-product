@@ -6,7 +6,6 @@ import {
   ChartNoAxesColumn,
   ShoppingCart,
   LayoutDashboard,
-  BookOpen,
   User,
   BriefcaseBusiness
 } from "lucide-react"
@@ -23,7 +22,7 @@ import {
   SidebarRail,
 } from "@/components/ui/sidebar"
 
-// This is sample data.
+
 const data = {
   navMain: [
     {

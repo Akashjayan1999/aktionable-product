@@ -13,10 +13,7 @@ const CreateContraktAiProjectModules: Record<string, CreateContraktAiProjectsTyp
 };
 
 interface Props {
-  params: {
-    modules: string;
-  };
- 
+  params: Promise<{ modules: string }>;
 }
 
 export default async function CreateContraktAiProjectPage({ params  }: Props) {

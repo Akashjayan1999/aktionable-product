@@ -2,17 +2,15 @@
 
 import React from 'react';
 import { Button } from '@/components/ui/button';
-import { ArrowLeft } from 'lucide-react';
 import { ModeToggle } from '@/components/mode-toggle';
 import Link from 'next/link';
 import Image from 'next/image';
 import { PanelRightOpen } from 'lucide-react';
 interface ChatHeaderProps {
-  title: string;
   toogleSidebar?: () => void;
 }
 
-const ChatHeader: React.FC<ChatHeaderProps> = ({ title,toogleSidebar }) => {
+const ChatHeader: React.FC<ChatHeaderProps> = ({toogleSidebar }) => {
   return (
     <div className="flex items-center justify-between p-4  bg-background">
       <h1 className="text-xl font-semibold pt-2 visible md:invisible"><PanelRightOpen size={30} color='#a9bcd3' onClick={toogleSidebar} /></h1>

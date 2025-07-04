@@ -1,12 +1,10 @@
 "use client";
-import React, { useCallback, useMemo, useState } from "react";
+import React, { useCallback, useMemo } from "react";
 import { useForm, Controller } from "react-hook-form";
 import { Plus } from "lucide-react";
 
 import { Button } from "@/components/ui/button";
-import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
-import { Textarea } from "@/components/ui/textarea";
 import {
   SelectContent,
   SelectItem,
@@ -64,13 +62,13 @@ const ContraktaiForm: React.FC = () => {
     { value: "Team", label: "Team" },
   ];
 
-  const documentTypes = [
+  const documentTypes =  useMemo(() => { return [
     { value: "contribution-agreement", label: "Contribution Agreement" },
     { value: "contract", label: "Contract" },
     { value: "legal-document", label: "Legal Document" },
     { value: "technical-spec", label: "Technical Specification" },
     { value: "other", label: "Other" },
-  ];
+  ]},[]);
 
   const handleLanguageChange = useCallback(
     (languageValue: string, checked: boolean | "indeterminate") => {
@@ -85,7 +83,7 @@ const ContraktaiForm: React.FC = () => {
         );
       }
     },
-    [watch("languages"), setValue]
+    [watch, setValue]
   );
 
   const selectedDocumentTypeLabel = useMemo(() => {
@@ -93,7 +91,7 @@ const ContraktaiForm: React.FC = () => {
       documentTypes.find((type) => type.value === watch("documentType"))
         ?.label || ""
     );
-  }, [watch("documentType")]);
+  }, [watch,documentTypes]);
 
   const isValidFileType = useCallback((file: File) => {
     const allowedTypes = [
@@ -231,7 +229,7 @@ const ContraktaiForm: React.FC = () => {
             </span>
             <p className="mt-1 text-sm text-[#424242]">
               #Select your document type to view the preset questions.You can
-              remove any questions from the list that you don't want or add
+              remove any questions from the list that you don&apos;t want or add
               custom questions from below.
             </p>
           </div>

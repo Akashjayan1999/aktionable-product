@@ -26,5 +26,5 @@ export function useResetThemeOnNavigate() {
       window.removeEventListener("popstate", handlePopState);
       setTheme("light");
     };
-  }, []);
+  }, [setTheme]);
 }

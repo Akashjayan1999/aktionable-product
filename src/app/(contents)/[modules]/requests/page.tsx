@@ -24,9 +24,7 @@ const projectModules: Record<string, ModuleRequests> = {
 };
 
 interface Props {
-  params: {
-    modules: string;
-  };
+   params: Promise<{ modules: string }>;
 }
 
 export default async function ProjectPage({ params}: Props) {

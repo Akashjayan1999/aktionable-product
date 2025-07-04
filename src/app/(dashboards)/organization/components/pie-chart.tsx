@@ -4,7 +4,6 @@ import React from "react";
 import { PieChart, Pie, Cell, ResponsiveContainer, Tooltip } from "recharts";
 import { Card, CardContent } from "@/components/ui/card";
 import { ChevronDown } from "lucide-react";
-import { ChartTooltip, ChartTooltipContent } from "@/components/ui/chart";
 
 interface PieDataItem {
   name: string;
@@ -24,7 +23,6 @@ const PieChartStatusCard: React.FC<PieChartCardProps> = ({
   colors=["#004487", "#009588", "#6AD2FF", "#EFF4FB"],
   title = "Projects / Bot Status",
   subtitle = "Monthly",
-  labels = [],
 }) => {
   return (
     <Card className="w-full h-full shadow-none bg-white border-none rounded-2xl gap-5">

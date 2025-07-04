@@ -1,6 +1,6 @@
-import { Card, CardContent, CardFooter,CardHeader,CardDescription} from "@/components/ui/card";
+import { Card, CardFooter,CardHeader} from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
-import { MoreVertical, Trash2, Eye, Info, CheckCircle, XCircle } from "lucide-react";
+import { MoreVertical, Trash2, Eye, Info } from "lucide-react";
 import { cn } from "@/lib/utils";
 import { Separator } from "@/components/ui/separator";
 interface ProjectCardProps {

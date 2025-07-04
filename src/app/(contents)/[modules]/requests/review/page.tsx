@@ -5,29 +5,35 @@ interface ModuleReviews {
   title: string;
 }
 
-interface reviewData {
-  purpose: string
-  roles: string[]
-  tabs: {
-    label: string
-    value: string
-    issues: any[]
-  }[]
-}
+// interface reviewData {
+//   purpose: string
+//   roles: string[]
+//   tabs: {
+//     label: string
+//     value: string
+//     issues: any[]
+//   }[]
+// }
 const COMMON_TITLE = 'Summary of Commercial Lease Review'
 const reviewModules: Record<string, ModuleReviews> = {
   contraktai: {
     title: "Review Summary"
   }
 };
-
+interface QuestionAnswerItem {
+  question: string;
+  answer: string;
+  explanation: string;
+  issueExplanation: string;
+  feedback: string;
+}
 const reviewDataById: Record<string, {
   purpose: string
   roles: string[]
   tabs: {
     label: string
     value: string
-    issues: any[]
+    issues: QuestionAnswerItem[]
   }[]
 }> = {
   '0': {
@@ -74,10 +80,8 @@ The agreement governs the acquisition, construction, and equipping of the projec
 }
 
 interface Props {
-  params: {
-    modules: string;
-  };
-  searchParams: { [key: string]: string | string[] | undefined };
+   params: Promise<{ modules: string }>;
+  searchParams: Promise<{ [key: string]: string | string[] | undefined }>;
 }
 
 export default async function reviewPage({ params,searchParams  }: Props) {

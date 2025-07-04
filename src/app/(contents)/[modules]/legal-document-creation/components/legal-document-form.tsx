@@ -1,8 +1,8 @@
 "use client";
 
-import React, { useMemo, useState } from "react";
+import React, { useMemo } from "react";
 import { useForm, Controller, SubmitHandler } from "react-hook-form";
-import { Plus, Info, Delete, Trash2 } from "lucide-react";
+import { Plus, Trash2 } from "lucide-react";
 import { CustomSelect } from "@/components/ui/custom-selectbox";
 import { SelectContent, SelectItem } from "@/components/ui/select";
 import { CustomInput } from "@/components/ui/custom-input";
@@ -67,12 +67,12 @@ const LegalDocumentForm: React.FC = () => {
     defaultValues
   });
 
-  const documentTypes: Option[] = [
+  const documentTypes: Option[] = useMemo(() => { return [
     { value: "employment-contract", label: "Employment Contract" },
     { value: "service-agreement", label: "Service Agreement" },
     { value: "consulting-agreement", label: "Consulting Agreement" },
     { value: "other", label: "Other" },
-  ];
+  ]},[]);
 
   const projectScopes: Option[] = [
     { value: "individual", label: "Individual" },
@@ -101,7 +101,7 @@ const LegalDocumentForm: React.FC = () => {
       documentTypes.find((type) => type.value === watch("documentType"))
         ?.label || ""
     );
-  }, [watch("documentType")]);
+  }, [watch,documentTypes]);
   return (
     <div className="font-varela-round mx-auto">
       <form onSubmit={handleSubmit(onSubmit)} className="space-y-6">

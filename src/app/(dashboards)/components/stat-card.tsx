@@ -22,7 +22,7 @@ export default function StatCard({
   growth,
   percentage,
   pertText,
-  highlight = false,
+  // highlight = false,
   
 
 }: StatCardProps) {

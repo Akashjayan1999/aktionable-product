@@ -1,8 +1,6 @@
 "use client";
 
 import { ChatCard } from "@/components/chat-card";
-import { Button } from "@/components/ui/button";
-import { useState } from "react";
 import Image from "next/image";
 import TitleWithBackButton from "@/components/title-with-backbutton";
 export interface Chat {

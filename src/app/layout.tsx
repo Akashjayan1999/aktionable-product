@@ -1,4 +1,3 @@
-import type { Metadata } from "next";
 import { Geist, Geist_Mono, Quicksand, Varela_Round , DM_Sans} from "next/font/google";
 import { ThemeProvider } from "@/components/providers/theme.provider"
 import { ThemeResetProvider } from "@/components/providers/theme-reset.provider";

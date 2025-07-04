@@ -1,14 +1,11 @@
 // components/ui/feature-card.tsx
 import {
   Card,
-  CardAction,
-  CardContent,
   CardDescription,
   CardFooter,
   CardHeader,
   CardTitle,
 } from "@/components/ui/card";
-import { ArrowRight } from "lucide-react";
 import React from "react";
 import Image from "next/image";
 import Link from "next/link";
