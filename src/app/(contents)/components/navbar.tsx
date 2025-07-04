@@ -68,7 +68,7 @@ const navigationConfig: NavigationConfigMap = {
         children: [
           {
             title: "Created Documents",
-            href: "/contraktai/completed-projects",
+            href: "/contraktai/legal-document-creation/completed-projects",
           },
         ],
       },
@@ -76,7 +76,7 @@ const navigationConfig: NavigationConfigMap = {
         title: "My Requests",
         href: "/contraktai/requests"
       },
-      { title: "AI Lawyer", href: "/contraktai/lawyer" },
+      { title: "AI Lawyer", href: "/contraktai/ai-lawyer" },
     ],
   },
   adoptiq: {
@@ -87,7 +87,7 @@ const navigationConfig: NavigationConfigMap = {
         title: "Projects",
         href: "/adoptiq/projects",
       },
-      { title: "Chatbots", href: "/adoptiq/chatbots" },
+      { title: "Chatbots", href: "/adoptiq/chats" },
     ],
   },
 };
@@ -115,7 +115,9 @@ export default function Navbar() {
     <nav className="fixed rounded-[50px] left-5 right-5 md:right-12 md:left-12 top-6 min-h-18 z-50 bg-white shadow-sm py-3 px-6 flex justify-between items-center gap-10">
       {/* Logo */}
       <div className="flex items-center gap-2">
+        <Link href="/home">
         <Image src="/logo.svg" alt="Aktionable AI" width={180} height={60} />
+        </Link>
       </div>
 
       {/* Right Side */}

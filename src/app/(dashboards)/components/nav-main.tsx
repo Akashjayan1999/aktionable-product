@@ -82,6 +82,7 @@ export function NavMain({
           
           return (
             <SidebarMenuItem key={item.title} className="mb-2 font-semibold text-base ">
+              <Link href={item.url}>
               <SidebarMenuButton 
                 tooltip={item.title} 
                 className={`active:bg-white cursor-pointer  hover:!bg-white hover:!text-[#004487] transition-all duration-300 ease-in-out hover:border-r-3 hover:border-[#004487] rounded-none ${
@@ -89,12 +90,14 @@ export function NavMain({
                     ? 'text-[#004487]  border-r-3 border-[#004487]' 
                     : 'text-[#A3AED0]'
                 }`}
-                 onClick={() => handleSubItemClick(item.url)}
+                //  onClick={() => handleSubItemClick(item.url)}
               >
+                
                 {item.icon && <item.icon />}
                 <span>{item.title}</span>
+                
               </SidebarMenuButton>
-              
+              </Link>
               {item.items && item.items.length > 0 && (
                 <SidebarMenuSub className="border-l-0">
                   {item.items?.map((subItem) => {
@@ -102,12 +105,13 @@ export function NavMain({
                     
                     return (
                       <SidebarMenuSubItem key={subItem.title} className="">
+                         <Link href={subItem.url}>
                         <SidebarMenuSubButton 
                           asChild 
                           className={`active:bg-white cursor-pointer hover:bg-white transition-all duration-300 ease-in-out ${
                             isSubActive ? '' : ''
                           }`}
-                          onClick={() => handleSubItemClick(subItem.url)}
+                          // onClick={() => handleSubItemClick(subItem.url)}
                         >
                           
                           <div>
@@ -119,6 +123,7 @@ export function NavMain({
                           </div>
                           
                         </SidebarMenuSubButton>
+                        </Link>
                       </SidebarMenuSubItem>
                     )
                   })}

@@ -7,7 +7,7 @@ import {
   DropdownMenuLabel,
   DropdownMenuItem,
 } from "@/components/ui/dropdown-menu";
-
+import { useRouter } from "next/navigation"; 
 interface UserAvatarMenuProps {
   src: string;
   alt?: string;
@@ -21,6 +21,9 @@ export function UserAvatarMenu({
   fallback = "SA",
   name = "Super Admin",
 }: UserAvatarMenuProps) {
+ 
+const router = useRouter();
+
   return (
     <DropdownMenu>
       <DropdownMenuTrigger asChild>
@@ -36,7 +39,7 @@ export function UserAvatarMenu({
         <DropdownMenuItem className="text-sm font-medium">
           My Profile
         </DropdownMenuItem>
-        <DropdownMenuItem className="text-sm font-medium">
+        <DropdownMenuItem className="text-sm font-medium" onClick={()=>{router.push("/organization")}}>
           Dashboard
         </DropdownMenuItem>
         <DropdownMenuItem className="text-sm font-medium">

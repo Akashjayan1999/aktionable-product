@@ -47,7 +47,7 @@ const data = {
     },
     {
       title: "Consumption",
-      url: "/consumption",
+      url: "/consumption/gen-ai",
       icon: LayoutDashboard,
       items: [
         {

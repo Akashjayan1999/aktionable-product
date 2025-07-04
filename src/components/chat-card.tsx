@@ -13,13 +13,16 @@ import {
   Info,
   CheckCircle,
   XCircle,
+ 
 } from "lucide-react";
 import { cn } from "@/lib/utils";
 import { Separator } from "@/components/ui/separator";
 import { vi } from "vitest";
 import Image from "next/image";
+import Link from "next/link";
 
 interface ChatProps {
+  id:number;
   name: string;
   createdAt: string;
   description: string;
@@ -28,6 +31,7 @@ interface ChatProps {
 }
 
 export const ChatCard = ({
+  id,
   name,
   createdAt,
   description,
@@ -75,9 +79,11 @@ export const ChatCard = ({
           <Button size="sm" className="bg-[#009588] hover:bg-[#004487] rounded-3xl px-6 py-5 text-lg w-fit">
             Stop
           </Button>
+          <Link href={`/adoptiq/actionable-bot?chat=${id}`}>
           <Button size="sm" className="bg-[#009588] hover:bg-[#004487] rounded-3xl px-6 py-5 text-lg w-fit"> 
             Open Chatbot
           </Button>
+          </Link>
         </div>
         <Trash2 className="w-6 h-6 ml-1 sm:ml-0 mt-3 sm:mt-0 cursor-pointer text-[#009588]" />
         </div>

@@ -47,7 +47,7 @@ export const ChatsSection = ({
 
         <div className="grid grid-cols-1 sm:grid-cols-1 lg:grid-cols-2 gap-7 overflow-y-auto scrollbar-hide">
           {chats.map((chat, idx) => (
-            <ChatCard key={idx} {...chat} />
+            <ChatCard key={idx} id={idx} {...chat} />
           ))}
         </div>
       </div>
