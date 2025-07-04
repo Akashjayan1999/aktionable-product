@@ -4,12 +4,7 @@ export default function Loading() {
   return (
     <div className="min-h-screen flex bg-gradient-to-br from-slate-50 via-white to-slate-100">
       
-      <aside className="hidden md:block w-64 p-4 border-r bg-white/60 shadow-inner backdrop-blur-md space-y-4">
-        <Skeleton className="h-10 w-3/4 rounded-lg" />
-        {Array.from({ length: 5 }).map((_, i) => (
-          <Skeleton key={i} className="h-6 w-full rounded-md" />
-        ))}
-      </aside>
+      
 
       
       <main className="flex-1 p-6 sm:p-10 space-y-8">

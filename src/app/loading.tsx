@@ -2,7 +2,7 @@ import { Skeleton } from "@/components/ui/skeleton";
 
 export default function Loading() {
   return (
-    <div className="min-h-screen flex items-center justify-center bg-gradient-to-br from-slate-50 via-white to-slate-100 relative overflow-hidden">
+     <div className="min-h-screen flex items-center justify-center bg-gradient-to-br from-slate-50 via-white to-slate-100 relative overflow-hidden">
     
       <div className="absolute inset-0 pointer-events-none">
         <div className="absolute top-1/4 left-1/4 w-64 h-64 bg-blue-100 rounded-full mix-blend-multiply filter blur-xl opacity-30 animate-pulse"></div>
@@ -11,7 +11,7 @@ export default function Loading() {
       </div>
 
       
-      <div className="relative z-10 w-full max-w-md px-6 sm:px-10 py-10 backdrop-blur-sm bg-white/60 rounded-2xl shadow-xl border border-white/20 space-y-6">
+      <div className="relative z-10 w-full max-w-md px-5 sm:px-10 py-20 backdrop-blur-sm bg-white/60 rounded-2xl shadow-sm border border-white/20 space-y-6">
       
         <div className="flex flex-col items-center space-y-3">
           <Skeleton className="h-12 w-12 rounded-full bg-gradient-to-r from-gray-200 to-gray-300" />
@@ -30,8 +30,8 @@ export default function Loading() {
 
    
         <div className="relative">
-          <Skeleton className="h-10 w-full rounded-xl bg-gradient-to-r from-[#009588] to-[#004487] shadow-lg" />
-          <div className="absolute inset-0 rounded-xl bg-gradient-to-r from-[#009588] to-[#004487] opacity-50 blur-lg animate-pulse"></div>
+          <Skeleton className="h-10 w-full rounded-xl bg-gradient-to-r from-gray-200 to-gray-300 shadow-lg" />
+          <div className="absolute inset-0 rounded-xl bg-gradient-to-r from-gray-200 to-gray-300 opacity-50 blur-lg animate-pulse"></div>
         </div>
 
         <Skeleton className="h-4 w-1/2 mx-auto rounded bg-gradient-to-r from-gray-100 to-gray-200" />
