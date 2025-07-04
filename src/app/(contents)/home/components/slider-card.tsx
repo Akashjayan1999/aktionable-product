@@ -11,7 +11,7 @@ import {
 import { ArrowRight } from "lucide-react";
 import React from "react";
 import Image from "next/image";
-
+import Link from "next/link";
 interface FeatureCardProps {
   title: string;
   description: string;
@@ -44,12 +44,12 @@ export function SlideCard({
         </a>
       </CardContent> */}
        <CardFooter className="flex items-end h-full text-2xl font-normal  font-quicksand">
-         <a
+         <Link
           href={href}
           className="text-white inline-flex items-center gap-5 hover:underline"
         >
           Read More <Image src="/arrow-tilt.svg" alt="Arrow Right" width={16} height={16} />
-        </a>
+        </Link>
       </CardFooter>
       <div className="absolute -bottom-1 -right-1 w-[80px] h-[80px] bg-white rounded-tl-[50px] rounded-br-[20px] border-0
       before:content-[''] before:absolute before:w-[20px] before:h-[20px] before:bg-transparent before:rounded-br-[30px] before:top-[-20px] before:right-0 before:shadow-[5px_5px_5px_0px_#fff]

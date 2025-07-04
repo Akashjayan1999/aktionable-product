@@ -64,23 +64,17 @@ const navigationConfig: NavigationConfigMap = {
       },
       {
         title: "AI Document Creator",
-        href: "/contraktai/ai-document-creator",
+        href: "/contraktai/legal-document-creation",
         children: [
           {
             title: "Created Documents",
-            href: "/contraktai/ai-document-creator/created-documents",
+            href: "/contraktai/completed-projects",
           },
         ],
       },
       {
         title: "My Requests",
-        href: "/contraktai/requests",
-        children: [
-          {
-            title: "Created Documents",
-            href: "/contraktai/ai-documengt-creator/created-documents",
-          },
-        ],
+        href: "/contraktai/requests"
       },
       { title: "AI Lawyer", href: "/contraktai/lawyer" },
     ],

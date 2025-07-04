@@ -36,7 +36,7 @@ export const ProjectSection = ({
     <div className="py-12 px-0 relative mt-25 mx-5 md:mx-[48px] h-min-2">
        <TitleWithBackButton title={title} backHref="#" />
       
-      <div className="bg-[#CDDAEA] rounded-2xl p-5 xl:p-10 mt-3 font-varela-round font-normal">
+      <div className="bg-[rgba(205,218,234,0.2)] rounded-2xl p-5 xl:p-10 mt-3 font-varela-round font-normal">
         <p className="text-xl text-[#000] mb-4">
           {description}
         </p>

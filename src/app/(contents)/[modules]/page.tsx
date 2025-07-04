@@ -15,7 +15,7 @@ export default async function Page({
       description: `Contrakt AI speeds up legal workflows by intelligently analyzing contracts and documents. It leverages legal AI and natural language processing to review clauses, flag risks, and ensure compliance with regulatory or policy requirements. Legal teams can automatically extract key information from agreements, compare terms against standards, and even generate first-draft contracts. By automating routine review work, Contrakt AI frees your lawyers to focus on strategic counsel while reducing errors and turnaround time.`,
       imageUrl: "/contractAI.svg",
       buttonText: "Create a Contrakt AI",
-      buttonLink: "/create/contraktai",
+      buttonLink: "/contraktai/create-contraktai",
       guideLink: "/how-to-guide",
       summary:
         "Get summary quickly, identify important terms, and analyse your legal documents.",
@@ -25,7 +25,7 @@ export default async function Page({
       description: `AdoptIQ helps you maximize ROI on your software investments through advanced digital adoption analytics and in-app automation. It monitors user engagement across your organization’s tools, identifying adoption rates and pain points in real time. With these insights, you can deploy in-app guidance or automated triggers to assist users exactly when they need help. This ensures every employee fully adopts new tools and processes. AdoptIQ’s analytics also inform training and change management strategies, so you can continuously improve productivity and technology ROI.`,
       imageUrl: "/adoptiq.svg",
       buttonText: "Create an AdoptIQ",
-      buttonLink: "/create/adoptiq",
+      buttonLink: "/adoptiq/create-projects",
       guideLink: "/how-to-guide",
       summary:
         "Quickly build and deploy AdoptIQ without coding.",

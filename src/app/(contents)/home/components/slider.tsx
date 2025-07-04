@@ -9,6 +9,7 @@ import Image from "next/image";
 type ModuleItem = {
   title: string;
   desc: string;
+  href:string
 };
 
 type SmartModulesSliderProps = {
@@ -64,7 +65,7 @@ export default function SmartModulesSlider({
       <div ref={sliderRef} className="keen-slider">
         {modules.map((mod, idx) => (
           <div key={idx} className="keen-slider__slide mx-auto">
-            <SlideCard title={mod.title} description={mod.desc} />
+            <SlideCard title={mod.title} description={mod.desc} href={mod.href} />
           </div>
         ))}
       </div>

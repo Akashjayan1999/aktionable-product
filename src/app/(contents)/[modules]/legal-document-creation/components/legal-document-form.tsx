@@ -40,6 +40,20 @@ const LegalDocumentForm: React.FC = () => {
   const [showAdditionalUserClause, toggleAdditionalUserClause] =
     useToggle(true);
   const [showAdditionalPartyA, toggleAdditionalPartyA] = useToggle(true);
+  const defaultValues = {
+    documentType: "",
+    projectScope: "",
+    partyAName: "",
+    partyAAddress: "",
+    partyBName: "",
+    partyBAddress: "",
+    fromDate: "",
+    toYears: "",
+    selectedClauses: "job-responsibilities",
+    jobResponsibilities: "",
+    userClauseName: "",
+    customClause: "",
+  };
   const {
     register,
     handleSubmit,
@@ -47,22 +61,10 @@ const LegalDocumentForm: React.FC = () => {
     formState: { errors },
     watch,
     setValue,
+    reset
   } = useForm<FormData>({
     resolver: zodResolver(legalDocumentFormSchema),
-    defaultValues: {
-      documentType: "",
-      projectScope: "",
-      partyAName: "",
-      partyAAddress: "",
-      partyBName: "",
-      partyBAddress: "",
-      fromDate: "",
-      toYears: "",
-      selectedClauses: "job-responsibilities",
-      jobResponsibilities: "",
-      userClauseName: "",
-      customClause: "",
-    },
+    defaultValues
   });
 
   const documentTypes: Option[] = [
@@ -92,8 +94,9 @@ const LegalDocumentForm: React.FC = () => {
 
   const onSubmit: SubmitHandler<FormData> = (data) => {
     console.log("Form submitted:", data);
+    reset(defaultValues);
   };
-const selectedDocumentTypeLabel = useMemo(() => {
+  const selectedDocumentTypeLabel = useMemo(() => {
     return (
       documentTypes.find((type) => type.value === watch("documentType"))
         ?.label || ""
@@ -102,7 +105,6 @@ const selectedDocumentTypeLabel = useMemo(() => {
   return (
     <div className="font-varela-round mx-auto">
       <form onSubmit={handleSubmit(onSubmit)} className="space-y-6">
-       
         <Controller
           name="documentType"
           control={control}
@@ -127,7 +129,6 @@ const selectedDocumentTypeLabel = useMemo(() => {
           )}
         />
 
-       
         <Controller
           name="projectScope"
           control={control}
@@ -152,13 +153,13 @@ const selectedDocumentTypeLabel = useMemo(() => {
           )}
         />
 
-       
         <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-          
           <div className="space-y-4">
             <div className="flex items-center justify-between space-x-2">
-              <h3 className="text-base font-medium text-gray-700">Party A<span className="text-red-500">*</span></h3>
-               <Button
+              <h3 className="text-base font-medium text-gray-700">
+                Party A<span className="text-red-500">*</span>
+              </h3>
+              <Button
                 type="button"
                 size="sm"
                 onClick={() => toggleAdditionalPartyA()}
@@ -168,32 +169,34 @@ const selectedDocumentTypeLabel = useMemo(() => {
               </Button>
             </div>
             {showAdditionalPartyA && (
-            <div className="space-y-3">
-              <CustomInput
-                htmlFor="partyAName"
-                placeholder="Enter Party A Name"
-                error={errors.partyAName?.message}
-                {...register("partyAName", {
-                  required: "Party A name is required",
-                })}
-              />
-              <CustomTextarea
-                htmlFor="partyAAddress"
-                placeholder="Enter Party A Address"
-                rows={4}
-                error={errors.partyAAddress?.message}
-                {...register("partyAAddress", {
-                  required: "Party A address is required",
-                })}
-              />
-            </div>)}
+              <div className="space-y-3">
+                <CustomInput
+                  htmlFor="partyAName"
+                  placeholder="Enter Party A Name"
+                  error={errors.partyAName?.message}
+                  {...register("partyAName", {
+                    required: "Party A name is required",
+                  })}
+                />
+                <CustomTextarea
+                  htmlFor="partyAAddress"
+                  placeholder="Enter Party A Address"
+                  rows={4}
+                  error={errors.partyAAddress?.message}
+                  {...register("partyAAddress", {
+                    required: "Party A address is required",
+                  })}
+                />
+              </div>
+            )}
           </div>
 
-          
           <div className="space-y-4">
             <div className="flex items-center justify-between space-x-2">
-              <h3 className="text-base text-gray-700">Party B<span className="text-red-500">*</span></h3>
-              
+              <h3 className="text-base text-gray-700">
+                Party B<span className="text-red-500">*</span>
+              </h3>
+
               <Button
                 type="button"
                 size="sm"
@@ -204,29 +207,29 @@ const selectedDocumentTypeLabel = useMemo(() => {
               </Button>
             </div>
             {showAdditionalPartyB && (
-            <div className="space-y-3">
-              <CustomInput
-                htmlFor="partyBName"
-                placeholder="Enter Party B Name"
-                error={errors.partyBName?.message}
-                {...register("partyBName", {
-                  required: "Party B name is required",
-                })}
-              />
-              <CustomTextarea
-                htmlFor="partyBAddress"
-                placeholder="Enter Party B Address"
-                rows={3}
-                error={errors.partyBAddress?.message}
-                {...register("partyBAddress", {
-                  required: "Party B address is required",
-                })}
-              />
-            </div>)}
+              <div className="space-y-3">
+                <CustomInput
+                  htmlFor="partyBName"
+                  placeholder="Enter Party B Name"
+                  error={errors.partyBName?.message}
+                  {...register("partyBName", {
+                    required: "Party B name is required",
+                  })}
+                />
+                <CustomTextarea
+                  htmlFor="partyBAddress"
+                  placeholder="Enter Party B Address"
+                  rows={3}
+                  error={errors.partyBAddress?.message}
+                  {...register("partyBAddress", {
+                    required: "Party B address is required",
+                  })}
+                />
+              </div>
+            )}
           </div>
         </div>
 
-       
         <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
           <CustomInput
             htmlFor="fromDate"
@@ -248,11 +251,8 @@ const selectedDocumentTypeLabel = useMemo(() => {
           />
         </div>
 
-      
         <div className="space-y-4">
-          <h3 className="text-base font-medium">
-            Select Legal Clauses
-          </h3>
+          <h3 className="text-base font-medium">Select Legal Clauses</h3>
           <div className="flex flex-wrap gap-3 md:gap-6">
             {legalClauses.map((clause) => {
               const isSelected = watch("selectedClauses")?.includes(
@@ -276,30 +276,31 @@ const selectedDocumentTypeLabel = useMemo(() => {
           </div>
         </div>
 
-        
         <div className="">
           <div className="flex items-start space-x-2">
-           
             <div>
               <p className="text-base font-medium ">
                 Document Type:{" "}
-                <span className="text-[#004487]">{selectedDocumentTypeLabel}</span>
+                <span className="text-[#004487]">
+                  {selectedDocumentTypeLabel}
+                </span>
               </p>
               <p className="text-base text-[#004487] mt-1">Clauses: 1/5</p>
               <p className="text-xs text-[#424242] mt-1">
-                ***By default, the selected clauses that require your input have a value that you can change to suit your needs.***
+                ***By default, the selected clauses that require your input have
+                a value that you can change to suit your needs.***
               </p>
             </div>
           </div>
         </div>
 
-       
         <div className="space-y-1">
           <div className="flex items-center md:w-[50%] justify-between">
-            <h3 className="text-base font-medium">
-              Job Responsibilities
-            </h3>
-             <Button type="button" className="bg-transparent shadow-none !py-0 !my-0 hover:bg-transparent cursor-pointer">
+            <h3 className="text-base font-medium">Job Responsibilities</h3>
+            <Button
+              type="button"
+              className="bg-transparent shadow-none !py-0 !my-0 hover:bg-transparent cursor-pointer"
+            >
               <Trash2 className="h-6 w-6 text-[#009588]" />
             </Button>
           </div>
@@ -307,29 +308,26 @@ const selectedDocumentTypeLabel = useMemo(() => {
             Outline the duties and responsibilities of the employee.
           </p>
           <div className="md:w-[50%]">
-          <CustomTextarea
-            htmlFor="jobResponsibilities"
-            placeholder="Software Engineer, responsible for developing and maintaining applications"
-            rows={4}
-            {...register("jobResponsibilities")}
-          />
+            <CustomTextarea
+              htmlFor="jobResponsibilities"
+              placeholder="Software Engineer, responsible for developing and maintaining applications"
+              rows={4}
+              {...register("jobResponsibilities")}
+            />
           </div>
         </div>
 
-       
         <div className="">
           <div className="flex items-center justify-between">
             <h3 className="text-base font-medium ">User Clauses</h3>
             <Button
-                type="button"
-                size="sm"
-                onClick={() =>
-                toggleAdditionalUserClause()
-              }
-                className="bg-transparent text-[#004487] shadow-none hover:bg-transparent cursor-pointer"
-              >
-                <Plus className="mr-1" />
-              </Button>
+              type="button"
+              size="sm"
+              onClick={() => toggleAdditionalUserClause()}
+              className="bg-transparent text-[#004487] shadow-none hover:bg-transparent cursor-pointer"
+            >
+              <Plus className="mr-1" />
+            </Button>
           </div>
 
           {showAdditionalUserClause && (
@@ -349,7 +347,6 @@ const selectedDocumentTypeLabel = useMemo(() => {
           )}
         </div>
 
-      
         <div className="flex justify-center pt-6">
           <Button
             variant="primary"
