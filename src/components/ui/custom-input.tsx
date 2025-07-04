@@ -19,7 +19,7 @@ export const CustomInput = React.forwardRef<HTMLInputElement, CustomInputProps>(
       )}
       <Input
         ref={ref}
-        className={`shadow-none border-1 border-[rgba(76,76,76,0.4)] h-12 !placeholder-[rgba(0,0,0,0.5)] focus:!ring-0 w-full rounded ${error ? "border-red-500" : ""} ${className}`}
+        className={`shadow-none border-1 border-[rgba(76,76,76,0.4)] h-12 relative !placeholder-[rgba(0,0,0,0.5)] focus:!ring-0 w-full rounded ${error ? "border-red-500" : ""} ${className}`}
         {...props}
       />
       {error && <p className="text-red-500 text-sm mt-1">{error}</p>}

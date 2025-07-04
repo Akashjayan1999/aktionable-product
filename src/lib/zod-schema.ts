@@ -24,3 +24,19 @@ export const createContraktaiFormSchema = z.object({
   languages: z.array(z.string()),
   customQuestion: z.string().optional(),
 });
+
+
+export const legalDocumentFormSchema = z.object({
+  documentType: z.string().min(1, "Document type is required"),
+  projectScope: z.string().min(1, "Project scope is required"),
+  partyAName: z.string().min(1, "Party A name is required"),
+  partyAAddress: z.string().min(1, "Party A address is required"),
+  partyBName: z.string().min(1, "Party B name is required"),
+  partyBAddress: z.string().min(1, "Party B address is required"),
+  fromDate: z.string().min(1, "Start date is required"),
+  toYears: z.string().min(1, "Duration is required"),
+  selectedClauses: z.string(), 
+  jobResponsibilities: z.string().min(1, "Job responsibilities are required"),
+  userClauseName: z.string().optional(),
+  customClause: z.string().optional(),
+});

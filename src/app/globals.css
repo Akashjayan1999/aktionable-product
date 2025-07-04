@@ -307,3 +307,8 @@ textarea:active {
   color: rgba(0, 0, 0, 0.5) !important;
   font-weight: normal !important;
 }
+
+
+
+::-webkit-calendar-picker-indicator { color: rgba(0, 0, 0, 0.5); position:absolute; right:5; }
+::-webkit-datetime-edit { color: rgba(0, 0, 0, 0.5); }

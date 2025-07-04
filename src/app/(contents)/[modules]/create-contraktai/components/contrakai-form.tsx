@@ -8,11 +8,8 @@ import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { Textarea } from "@/components/ui/textarea";
 import {
-  Select,
   SelectContent,
   SelectItem,
-  SelectTrigger,
-  SelectValue,
 } from "@/components/ui/select";
 import { Checkbox } from "@/components/ui/checkbox";
 import FileUpload from "./file-upload";
@@ -22,11 +19,12 @@ import { CustomSelect } from "@/components/ui/custom-selectbox";
 import { createContraktaiFormSchema } from "@/lib/zod-schema";
 import { z } from "zod";
 import { zodResolver } from "@hookform/resolvers/zod";
+import { useToggle } from "@/app/hooks/use-toogle";
 
 type FormValues = z.infer<typeof createContraktaiFormSchema>;
 
 const ContraktaiForm: React.FC = () => {
-  const [showCustomQuestion, setShowCustomQuestion] = useState(false);
+  const  [showCustomQuestion, toggleCustomQuestion] = useToggle(false);
 
   const {
     register,
@@ -291,7 +289,7 @@ const ContraktaiForm: React.FC = () => {
               <Button
                 type="button"
                 size="sm"
-                onClick={() => setShowCustomQuestion(!showCustomQuestion)}
+                onClick={() => toggleCustomQuestion()}
                 className="bg-transparent text-black shadow-none hover:bg-transparent cursor-pointer"
               >
                 <Plus className="mr-1" />
