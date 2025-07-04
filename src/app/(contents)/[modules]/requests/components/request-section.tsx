@@ -1,6 +1,3 @@
-
-import { Button } from "@/components/ui/button";
-import Image from "next/image";
 import {RequestItem} from "./request-table";
 import RequestTable from "./request-table";
 import TitleWithBackButton from "@/components/title-with-backbutton";

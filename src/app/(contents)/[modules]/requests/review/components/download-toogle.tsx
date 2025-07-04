@@ -1,7 +1,6 @@
 "use client";
 
 import { useState } from "react";
-import { Download } from "lucide-react"; // or use any icon library
 import Image from "next/image";
 
 export default function DocumentToggle() {

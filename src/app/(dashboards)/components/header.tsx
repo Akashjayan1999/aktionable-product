@@ -1,7 +1,5 @@
 "use client";
 import { Input } from "@/components/ui/input";
-import { Bell, Info, Moon } from "lucide-react";
-import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
 import { SidebarTrigger } from "@/components/ui/sidebar";
 import { Search } from "lucide-react";
 import Image from "next/image";

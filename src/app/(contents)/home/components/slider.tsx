@@ -2,7 +2,6 @@
 
 import { useKeenSlider } from "keen-slider/react";
 import "keen-slider/keen-slider.min.css";
-import { ArrowRight, ArrowLeft } from "lucide-react";
 import { SlideCard } from "./slider-card";
 import Image from "next/image";
 
