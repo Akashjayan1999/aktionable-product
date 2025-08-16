@@ -6,12 +6,12 @@ export function SegmentedFilter({ filter }: { filter: string }) {
   const selected = Array.isArray(filter) ? filter[0] || "Day" : filter || "Day";
 
   return (
-    <div className="flex flex-col lg:flex-row items-center gap-4 bg-white p-5 rounded-2xl w-full">
+    <div className="flex flex-col xl:flex-row items-center gap-4 bg-white p-5 rounded-2xl w-full">
   <span className="text-[#004487] font-medium text-lg sm:text-xl lg:text-2xl whitespace-nowrap text-center lg:text-left">
     Show data for the
   </span>
   
-  <div className="flex bg-[#D6E3F3] rounded-full space-x-1 overflow-x-auto scrollbar-hide w-full lg:w-auto">
+  <div className="flex bg-[#D6E3F3] rounded-full overflow-x-auto scrollbar-hide w-full lg:w-auto whitespace-nowrap">
     <Link
       key={selected}
       href={`?filter=${selected}`}
