@@ -10,8 +10,8 @@ export function SegmentedFilter({ filter }: { filter: string }) {
   <span className="text-[#004487] font-medium text-lg sm:text-xl lg:text-2xl whitespace-nowrap text-center lg:text-left">
     Show data for the
   </span>
-  
-  <div className="flex bg-[#D6E3F3] rounded-full overflow-x-auto scrollbar-hide w-full lg:w-auto whitespace-nowrap">
+  <div className="grid">
+  <div className="flex bg-[#D6E3F3] rounded-full space-x-1 overflow-x-auto scrollbar-hide w-full lg:w-auto">
     <Link
       key={selected}
       href={`?filter=${selected}`}
@@ -31,6 +31,7 @@ export function SegmentedFilter({ filter }: { filter: string }) {
         {option}
       </Link>
     ))}
+  </div>
   </div>
 </div>
   );
