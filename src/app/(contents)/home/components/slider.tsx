@@ -49,7 +49,7 @@ export default function SmartModulesSlider({
   });
 
   return (
-    <div className="relative min-h-[45vh] max-w-7xl mx-auto px-4 py-5">
+    <div className="relative min-h-[42vh] max-w-7xl mx-auto px-4 py-4">
       <h2 className="text-6xl text-center bg-gradient-to-r from-[#009588] to-[#004487] bg-clip-text text-transparent mb-6 font-varela-round font-normal">
         {/* {heading.split("‘").map((part, i) =>
           i % 2 === 1 ? (

@@ -19,9 +19,19 @@ New-Item -ItemType Directory -Path "deploy\.next" -Force
 # Copy static files
 Copy-Item ".next\static" "deploy\.next\static" -Recurse -Force
 
+# IMPORTANT: Copy the entire .next folder structure for dynamic routes
+if (Test-Path ".next\server") {
+    Copy-Item ".next\server" "deploy\.next\server" -Recurse -Force
+}
+
 # Copy public folder if it exists
 if (Test-Path "public") {
     Copy-Item "public" "deploy\public" -Recurse -Force
+}
+
+# Copy package.json (needed for dependencies info)
+if (Test-Path "package.json") {
+    Copy-Item "package.json" "deploy\package.json" -Force
 }
 
 # Copy environment file if it exists

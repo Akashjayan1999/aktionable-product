@@ -308,6 +308,16 @@ textarea:active {
   font-weight: normal !important;
 }
 
+.hover-hero{
+
+}
+
+@media  (max-height: 800px) {
+  .home-hero{
+    height:65vh;
+  }
+}
+
 
 
 ::-webkit-calendar-picker-indicator { color: rgba(0, 0, 0, 0.5); position:absolute; right:5; }

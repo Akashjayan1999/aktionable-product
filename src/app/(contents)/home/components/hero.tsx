@@ -3,14 +3,14 @@ import { Button } from "@/components/ui/button";
 
 export default function Hero() {
   return (
-    <section className="relative w-full min-h-[45vh]">
+    <section className="relative w-full min-h-[48vh] home-hero">
       <Image
         src="/hero.svg"
         alt="Network Globe"
         fill
         className="object-cover object-[40%_24%] absolute -z-20 w-full h-full"
       />
-      <div className="max-w-4xl px-4 py-5 md:px-14 min-h-[45vh] grid content-end">
+      <div className="home-hero max-w-4xl px-4 py-5 md:px-14 min-h-[48vh] grid content-end">
         {/* Text content */}
         <div className="">
           <h1 className="text-5xl font-semibold text-white leading-tight font-quicksand">

@@ -19,7 +19,21 @@ const nextConfig: NextConfig = {
         });
       }
     }
-    
+    rewrites.push({
+      source:"/contraktai",
+      destination:"/contraktai"
+
+    })
+    rewrites.push({
+      source:"/adoptiq",
+      destination:"/adoptiq"
+
+    })
+    rewrites.push({
+      source:"/medusaai",
+      destination:"/medusaai"
+
+    })
     // Catch invalid routes
     for (const module of Object.keys(routesInfo)) {
       rewrites.push({
@@ -31,6 +45,7 @@ const nextConfig: NextConfig = {
     return rewrites;
   },
   output: "standalone",
+  trailingSlash: false,
 };
 
 export default nextConfig;

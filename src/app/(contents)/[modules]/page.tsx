@@ -2,6 +2,9 @@ import { ModuleSection } from "./components/module";
 
 import { notFound } from "next/navigation";
 
+export function generateStaticParams() {
+  return [{ modules: "contraktai" }, { modules: "adoptiq" }, { modules: "medusaai" }]
+}
 
 
 export default async function Page({
